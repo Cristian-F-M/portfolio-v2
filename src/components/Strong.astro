@@ -1,0 +1,11 @@
+---
+import { twMerge as tw } from "tailwind-merge";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<strong class={tw("text-emerald-700 dark:text-emerald-500", className)}><slot /></strong>

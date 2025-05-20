@@ -1,0 +1,23 @@
+---
+import { twMerge as tw } from "tailwind-merge";
+
+interface Props {
+  id: string;
+  title?: string;
+  class?: string;
+}
+
+const { id, title, class: className } = Astro.props;
+---
+
+<section id={id} class={tw("my-10", className)}>
+  {
+    title && (
+      <h3 class="flex flex-row gap-2 items-center">
+        <slot name="icon" />
+        {title}
+      </h3>
+    )
+  }
+  <slot />
+</section>
