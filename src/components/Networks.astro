@@ -1,0 +1,8 @@
+---
+import { NETWORKS } from "@/constants/Networks.ts";
+import Network from "@/components/Network.astro";
+---
+
+<div class="flex flex-row gap-1.5">
+  {NETWORKS.map((network) => <Network {...network} />)}
+</div>
