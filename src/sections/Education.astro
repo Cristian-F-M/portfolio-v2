@@ -1,0 +1,101 @@
+---
+import Section from "@/components/Section.astro";
+import type { languages } from "@/i18n/ui";
+import { useTranslations } from "@/i18n/utils";
+import School from "@/icons/School.svg";
+import Verificate from '@/icons/Verificate.svg'
+
+
+const lang = Astro.params.lang as keyof typeof languages;
+const t = useTranslations(lang);
+
+interface Education {
+  id: string;
+  instution: string;
+  period: {
+    start: `${string}/${string}/${string}`,
+    end: `${string}/${string}/${string}` | null
+  },
+  certificate: string;
+  verificate: boolean
+}
+
+const EDUCATIONS: Education[] = [
+  {
+    id: "sena-ADSO",
+    instution: "Centro de Gestión Agroempresarial del Oriente",
+    period: {
+      start: "18/07/2022",
+      end: '17/10/2024',
+    },
+    certificate: t('education.sena-adso.certificate'),
+    verificate: true
+  },
+  {
+    id: 'sena-FBPJ',
+    instution: "Centro de Gestión Agroempresarial del Oriente",
+    period: {
+      start: "24/11/2022",
+      end: "24/11/2022"
+    },
+    certificate: t('education.sena-fbpj.certificate'),
+    verificate: true  
+  },
+  {
+    id: 'sena-ACC',
+    instution: "Centro de gestión Agroempresarial del oriente",
+    period: {
+      start: "29/11/2022",
+      end: "29/11/2022"
+    },
+    certificate: t('education.sena-acc.certificate'),
+    verificate: true
+  }
+];
+---
+
+<Section title={t('education.title')} id="education">
+  <School class="size-8 -m-2" slot={"icon"}/>
+  <div>
+    {
+      EDUCATIONS.map(({ id, instution, period, certificate, verificate }, index) => {
+        const showSeparator = index !== EDUCATIONS.length - 1
+
+        return <article class="flex flex-row justify-between" id={id}>
+          <div>
+            <h4 class="text-lg font-semibold text-gray-800 dark:text-gray-300 flex flex-row gap-2 items-center">
+              {certificate}
+                {verificate && (
+                    <span class=" cursor-poiner" title="Certificado">
+                      <Verificate class="size-4.5 text-blue-800 dark:text-blue-400 cursor-pointer" />
+                    </span>
+                  )}
+              </h4>
+            <h5 class="text-sm text-gray-700 dark:text-gray-400 -mt-1">{instution}</h5>
+          </div>
+          <span class="text-sm text-gray-700 dark:text-gray-400">
+            {period.start} - {period.end ? period.end : "Actualmente"}
+          </span>
+        </article>
+        <span class={`w-full h-[1px] bg-green-500 dark:bg-green-800 block my-5 no-print ${showSeparator ? "" : "hidden"}`} />
+      })
+    }
+  </div>
+</Section>
+
+<style>
+  article {
+    font-family:
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      Oxygen,
+      Ubuntu,
+      Cantarell,
+      "Open Sans",
+      "Helvetica Neue",
+      sans-serif;
+  }
+</style>
