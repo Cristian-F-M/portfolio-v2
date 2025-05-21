@@ -12,7 +12,6 @@ class Toast extends HTMLElement {
 		this.startTime
 		this.elapsed
 
-
 		this.addEventListener('mouseenter', () => {
 			if (!this.timeOut) return
 			clearTimeout(this.timeOut)
@@ -33,7 +32,11 @@ class Toast extends HTMLElement {
 	}
 
 	show(message: string, options?: { duration: number }) {
-		if (this.classList.contains('show')) this.classList.remove('show')
+		if (this.classList.contains('show')) {
+			if (this.timeOut) clearTimeout(this.timeOut)
+			this.classList.remove('show')
+			this.timeOut = null
+		}
 
 		this.innerHTML = `<span>${message}</span>`
 		this.classList.add('show')
