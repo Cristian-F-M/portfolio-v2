@@ -10,13 +10,13 @@ interface Props {
 const { id, title, class: className } = Astro.props;
 ---
 
-<section id={id} class={tw("my-10", className)}>
+<section id={id} class={tw("my-20", className)}>
   {
     title && (
-      <h3 class="flex flex-row gap-2 items-center">
+      <h2 class="flex flex-row gap-2 items-center text-2xl font-sans">
         <slot name="icon" />
         {title}
-      </h3>
+      </h2>
     )
   }
   <slot />
