@@ -13,7 +13,7 @@ const { id, title, class: className } = Astro.props;
 <section id={id} class={tw("my-20", className)}>
   {
     title && (
-      <h2 class="flex flex-row gap-2 items-center text-2xl font-sans">
+      <h2 class="flex flex-row gap-2 items-center text-2xl font-sans mb-2">
         <slot name="icon" />
         {title}
       </h2>
