@@ -1,3 +1,29 @@
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+
+cm-toast {
+  @apply absolute inset-0 w-screen h-screen pointer-events-none;
+}
+
+cm-toast.show {
+  opacity: 1;
+}
+
+
+cm-toast span {
+  @apply  bg-green-200 dark:bg-green-400 absolute bottom-5 left-1/2 translate-y-4 px-1.5 py-2 rounded-lg text-black hidden opacity-0 cursor-crosshair;
+  transition: all 0.2s ease allow-discrete;
+}
+
+cm-toast.show span {
+  @apply opacity-100 block;
+
+  transform: translateX(-50%) translateY(-20px);
+
+  @starting-style {
+    transform: translateX(-50%) translateY(20px);
+    opacity: 0;
+  }
+}
