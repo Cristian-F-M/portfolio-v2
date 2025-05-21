@@ -13,7 +13,8 @@ cm-toast.show {
 
 
 cm-toast span {
-  @apply  bg-green-200 dark:bg-green-400 absolute bottom-5 left-1/2 translate-y-4 px-1.5 py-2 rounded-lg text-black hidden opacity-0 cursor-crosshair;
+  @apply  bg-green-200 dark:bg-green-400 absolute bottom-5 left-1/2  px-1.5 py-2 rounded-lg text-black hidden opacity-0 cursor-crosshair shadow-md shadow-green-900 dark:shadow-green-700;
+  transform: translateX(-50%) translateY(0);
   transition: all 0.2s ease allow-discrete;
 }
 
