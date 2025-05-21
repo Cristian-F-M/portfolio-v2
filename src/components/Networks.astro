@@ -1,8 +1,41 @@
 ---
 import { NETWORKS } from "@/constants/Networks.ts";
 import Network from "@/components/Network.astro";
+import { useTranslations } from "@/i18n/utils";
+import type { languages } from "@/i18n/ui";
+
+const lang = Astro.params.lang as keyof typeof languages;
+const t = useTranslations(lang);
+const copyMessage = t('network.copy')
 ---
 
-<div class="flex flex-row gap-1.5">
+<div class="networks flex flex-row gap-1.5">
   {NETWORKS.map((network) => <Network {...network} />)}
 </div>
+
+<script is:inline define:vars={{ copyMessage }}>
+
+  const networks = document.querySelectorAll(".networks a");
+
+  networks.forEach((network) => {
+    if (!(network instanceof HTMLAnchorElement)) return;
+    network.addEventListener("click", (event) => {
+      const isShiftKey = event.shiftKey;
+      if (!isShiftKey) return;
+      event.preventDefault();
+
+      const href = network.getAttribute("href");
+
+      if (!href) return;
+
+      navigator.clipboard
+        .writeText(href)
+        .then(() => {
+          document.querySelector("cm-toast").show(copyMessage, { duration: 1000 });
+        })
+        .catch((err) => {
+          console.log("no Se puedo copiar", err);
+        });
+    });
+  });
+</script>
