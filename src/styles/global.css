@@ -28,3 +28,8 @@ cm-toast.show span {
     opacity: 0;
   }
 }
+
+
+strong {
+  @apply text-emerald-600 dark:text-emerald-400;
+}
