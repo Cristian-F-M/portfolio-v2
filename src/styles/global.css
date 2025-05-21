@@ -2,6 +2,10 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+@theme {
+  --font-raleway: "Raleway Variable";
+}
+
 
 cm-toast {
   @apply absolute inset-0 w-screen h-screen pointer-events-none;
