@@ -1,0 +1,48 @@
+---
+import Section from "@/components/Section.astro";
+import Strong from "@/components/Strong.astro";
+import WorldCode from "@/icons/WorldCode.svg";
+import Networks from "@/components/Networks.astro";
+import { useTranslations } from "@/i18n/utils";
+import type { languages } from "@/i18n/ui";
+
+const lang = Astro.params.lang as keyof typeof languages;
+const t = useTranslations(lang);
+---
+
+<Section id="HeroHeader" class="flex flex-row gap-14">
+  <div class="space-y-1">
+    <div>
+      <h1 class="text-4xl">Cristian Fernando Morales Diaz</h1>
+      <p class="text-base w-10/12" set:html={t("hero.description")} />
+    </div>
+
+    <a
+      href="https://maps.app.goo.gl/YLZzS2hCxyVsPYPNA"
+      target="_blank"
+      class="flex flex-row gap-1 items-center text-gray-700 dark:text-gray-400 hover:underline w-fit"
+    >
+      <WorldCode class="size-5" />
+      <span>Santander, Colombia</span>
+      <img
+        class="w-4 ml-0.5"
+        src="https://flagcdn.com/24x18/co.png"
+        alt="Emoji de la bandera de Colombia"
+      />
+    </a>
+
+    <Networks />
+  </div>
+
+  <div
+    class="w-36 rounded-md overflow-hidden -rotate-12 shadow-2xl shadow-gray-900 dark:shadow-gray-200"
+  >
+    <picture>
+      <img
+        class="size-full object-cover"
+        src="/images/foto.jpeg"
+        alt={t('hero.image.alt')}
+      />
+    </picture>
+  </div>
+</Section>
