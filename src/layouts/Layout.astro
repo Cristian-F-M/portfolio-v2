@@ -20,6 +20,7 @@ const locale = Astro.currentLocale;
     <link rel="icon" href="/logo-cm.ico" sizes="any" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/logo-cm.png" />
+    <script src="../scripts/cm-toast.ts"></script>
     <title>{title}</title>
   </head>
 
@@ -31,5 +32,6 @@ const locale = Astro.currentLocale;
         color-scheme: dark light;
       }
     </style>
+    <cm-toast></cm-toast>
   </body>
 </html>
