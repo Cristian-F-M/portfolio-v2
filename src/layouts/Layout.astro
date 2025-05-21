@@ -24,7 +24,9 @@ const locale = Astro.currentLocale;
     <title>{title}</title>
   </head>
 
-  <body class="min-h-screen bg-gradient-to-b dark:from-slate-900 dark:to-emerald-900 from-slate-200 to-emerald-400 text-black dark:text-white">
+  <body
+    class="min-h-screen bg-gradient-to-b dark:from-slate-900 dark:to-emerald-900 from-slate-200 to-emerald-400 text-black dark:text-white overflow-x-hidden"
+  >
     <slot />
 
     <style is:global>
