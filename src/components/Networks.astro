@@ -6,7 +6,7 @@ import type { languages } from "@/i18n/ui";
 
 const lang = Astro.params.lang as keyof typeof languages;
 const t = useTranslations(lang);
-const copyMessage = t('network.copy')
+const copyMessage = t(lang => lang.networks.copyMessage)
 ---
 
 <div class="networks flex flex-row gap-1.5">

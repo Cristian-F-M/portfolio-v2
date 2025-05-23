@@ -14,7 +14,7 @@ const t = useTranslations(lang);
   <div class="space-y-1">
     <div>
       <h1 class="text-4xl">Cristian Fernando Morales Diaz</h1>
-      <p class="text-base w-10/12" set:html={t("hero.description")} />
+      <p class="text-base w-10/12" set:html={t(lang => lang.hero.description)} />
     </div>
 
     <a
@@ -41,7 +41,7 @@ const t = useTranslations(lang);
       <img
         class="size-full object-cover"
         src="/images/foto.jpeg"
-        alt={t('hero.image.alt')}
+        alt={t(lang => lang.hero.imageAlt)}
       />
     </picture>
   </div>

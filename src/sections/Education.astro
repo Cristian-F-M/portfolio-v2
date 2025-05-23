@@ -28,7 +28,7 @@ const EDUCATIONS: Education[] = [
       start: "18/07/2022",
       end: '17/10/2024',
     },
-    certificate: t('education.sena-adso.certificate'),
+    certificate: t(lang => lang.education.studies["sena-adso"].certificateName),
     verificate: true
   },
   {
@@ -38,7 +38,7 @@ const EDUCATIONS: Education[] = [
       start: "24/11/2022",
       end: "24/11/2022"
     },
-    certificate: t('education.sena-fbpj.certificate'),
+    certificate: t(lang => lang.education.studies["sena-fbpj"].certificateName),
     verificate: true  
   },
   {
@@ -48,13 +48,13 @@ const EDUCATIONS: Education[] = [
       start: "29/11/2022",
       end: "29/11/2022"
     },
-    certificate: t('education.sena-acc.certificate'),
+    certificate: t(lang => lang.education.studies["sena-acc"].certificateName),
     verificate: true
   }
 ];
 ---
 
-<Section title={t('education.title')} id="education">
+<Section title={t(lang => lang.education.sectionTitle)} id="education">
   <School class="size-8 -m-2" slot={"icon"}/>
   <div>
     {

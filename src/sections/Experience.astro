@@ -30,13 +30,13 @@ const EXPERIENCES: Experience[] = [
       end: "17/10/2024",
     },
     position: "Tester",
-    summary: t('experience.wm.summary'),
+    summary: t(lang => lang.experience.jobs.wm.summary),
     verificate: true,
   },
 ];
 ---
 
-<Section id="Experience" title={t('experience.title')} class="w-11/12">
+<Section id="Experience" title={t(lang => lang.experience.sectionTitle)} class="w-11/12">
   <Briefcase class="size-8 -m-2" slot={"icon"} />
   {
     EXPERIENCES.reverse().map(
