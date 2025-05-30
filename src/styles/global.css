@@ -15,6 +15,9 @@
 	}
 }
 
+html {
+	scroll-behavior: smooth;
+}
 
 cm-toast {
   @apply absolute inset-0 w-screen h-screen pointer-events-none;
