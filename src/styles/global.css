@@ -4,10 +4,25 @@
 
 @theme {
 	--font-raleway: "Raleway Variable";
-	--animate-shine-effect: shine-effect 0.5s infinite;
+	--animate-shine-effect: shine-effect 1.5s cubic-bezier(.25,1.06,.89,1.02) infinite;
 
 	@keyframes shine-effect {
-		to {
+		70% {
+			transform: translateX(110%);
+			opacity: 0;
+		}
+
+		80% {
+			transform: translateX(110%);
+			opacity: 0;
+		}
+
+		90% {
+			transform: translateX(110%);
+			opacity: 0;
+		}
+    
+		100% {
 			transform: translateX(110%);
 			opacity: 0;
 		}
