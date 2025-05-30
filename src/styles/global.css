@@ -6,12 +6,11 @@
 	--font-raleway: "Raleway Variable";
 	--animate-shine-effect: shine-effect 0.5s infinite;
 
-
 	@keyframes shine-effect {
 		to {
 			transform: translateX(110%);
-      opacity: 0;
-    }
+			opacity: 0;
+		}
 	}
 }
 
@@ -20,32 +19,30 @@ html {
 }
 
 cm-toast {
-  @apply absolute inset-0 w-screen h-screen pointer-events-none;
+	@apply absolute inset-0 w-screen h-screen pointer-events-none;
 }
 
 cm-toast.show {
-  opacity: 1;
+	opacity: 1;
 }
 
-
 cm-toast span {
-  @apply  bg-green-200 dark:bg-green-400 absolute bottom-5 left-1/2  px-1.5 py-2 rounded-lg text-black hidden opacity-0 cursor-crosshair shadow-md shadow-green-900 dark:shadow-green-700;
-  transform: translateX(-50%) translateY(0);
-  transition: all 0.2s ease allow-discrete;
+	@apply bg-green-200 dark:bg-green-400 absolute bottom-5 left-1/2  px-1.5 py-2 rounded-lg text-black hidden opacity-0 cursor-crosshair shadow-md shadow-green-900 dark:shadow-green-700;
+	transform: translateX(-50%) translateY(0);
+	transition: all 0.2s ease allow-discrete;
 }
 
 cm-toast.show span {
-  @apply opacity-100 block;
+	@apply opacity-100 block;
 
-  transform: translateX(-50%) translateY(-20px);
+	transform: translateX(-50%) translateY(-20px);
 
-  @starting-style {
-    transform: translateX(-50%) translateY(20px);
-    opacity: 0;
-  }
+	@starting-style {
+		transform: translateX(-50%) translateY(20px);
+		opacity: 0;
+	}
 }
 
-
 strong {
-  @apply text-emerald-600 dark:text-emerald-400;
+	@apply text-emerald-600 dark:text-emerald-400;
 }
