@@ -3,7 +3,16 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-raleway: "Raleway Variable";
+	--font-raleway: "Raleway Variable";
+	--animate-shine-effect: shine-effect 0.5s infinite;
+
+
+	@keyframes shine-effect {
+		to {
+			transform: translateX(110%);
+      opacity: 0;
+    }
+	}
 }
 
 
