@@ -5,6 +5,7 @@ import WorldCode from "@/icons/WorldCode.svg";
 import Networks from "@/components/Networks.astro";
 import { useTranslations } from "@/i18n/utils";
 import type { languages } from "@/i18n/ui";
+import ColombianFlag from "@/icons/ColombianFlag.svg";
 
 const lang = Astro.params.lang as keyof typeof languages;
 const t = useTranslations(lang);
@@ -24,11 +25,7 @@ const t = useTranslations(lang);
     >
       <WorldCode class="size-5" />
       <span>Santander, Colombia</span>
-      <img
-        class="w-4 ml-0.5"
-        src="https://flagcdn.com/24x18/co.png"
-        alt="Emoji de la bandera de Colombia"
-      />
+      <ColombianFlag class="ml-1 size-5" />
     </a>
 
     <Networks />
