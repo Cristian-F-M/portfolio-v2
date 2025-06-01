@@ -50,40 +50,80 @@ export const ui = {
 		},
 		projects: {
 			sectionTitle: 'Proyectos',
+			seeMoreText: 'Ver más...',
+			cardProjectTitle: 'Haz clic para ver los detalles del projecto',
+			seeDemoText: 'Ver demo',
+			seeProjectDemoText: 'Haz clic para ver la demostración del projecto',
+			seeMoreProjects: 'Ver Más Proyectos',
 			projects: {
 				votaciones: {
+					api: {
+						name: 'Api Votaciones v2',
+						mainImageAlt:
+							'Foto de una respuesta del proyecto Api Votaciones v2',
+						description:
+							'Api desarrollada con Javascript para hacer la gestión de la votaciones para el CGAO (SENA), permitiendo realizar las peticiones desde la aplicación móvile así como la web; Utilizando sqlite (o mysql) para la base de datos'
+					},
 					web: {
-						login: {
-							mainImageAlt:
-								'Imagen de el inicio de sesión en la aplicación web del proyecto votaciones v2'
-						}
+						mainImageAlt:
+							'Imagen de el inicio de sesión en la aplicación web del proyecto votaciones v2',
+						name: 'Web Votaciones v2',
+						description:
+							'Pagina web para realizar participar en las votaciones de CGAO (SENA), creación del perfil de candidato y gestión administrativa de la aplicación.'
 					},
 					app: {
-						login: {
-							mainImageAlt:
-								'Imagen de el inicio de sesión en la aplicación móvil del proyecto votaciones v2'
-						}
+						mainImageAlt:
+							'Imagen de el inicio de sesión en la aplicación móvil del proyecto votaciones v2',
+						name: 'App móvil Votaciones v2',
+						description:
+							'Aplicación móvil para realizar participar en las votaciones de CGAO (SENA), creación del perfil de candidato.'
 					}
 				},
 				hojaDeVida: {
-					mainImageAlt: 'Imagen de la pagina web hoja de vida'
+					name: 'Hoja de vida',
+					mainImageAlt: 'Imagen de la pagina web hoja de vida',
+					description:
+						'Hoja de vida en pagina web para mostrar información sobre mí, experiencia y proyectos realizados además de información de contacto.'
 				},
 				todoCm: {
+					name: 'TODO CM v2',
 					mainImageAlt:
-						'Imagen de la aplicación móvil todo cm (Lista de tareas )'
+						'Imagen de la aplicación móvil todo cm (Lista de tareas )',
+					description:
+						'Aplicación de lista de tareas permitiendo organizarlas en carpetas y permitir notificar la tarea en determinado tiempo o fecha especifica.'
 				},
 				videoPlayer: {
-					mainImageAlt:
-						'Imagen de la aplicación web video player (Reproductor de video)'
+					name: 'Reproductor de video',
+					mainImageAlt: 'Imagen del projecto Reproductor de video',
+					description:
+						'Pagina web que permite cargar un video local o desde una URL para visualizarlo, con diferentes controles para navegar por el video, además de configuraciones para visualizar el video.'
+				},
+				touchCommand: {
+					name: 'Comando Touch',
+					mainImageAlt: "Imagen de ejemplo de la ejecución del comando 'touch'",
+					description:
+						'Comando touch para crear archivos y carpetas rapidamente.'
+				},
+				astronomyPictureDay: {
+					name: 'Imagen astronomica del día',
+					mainImageAlt: 'Imagen de el projecto Imagen astronomica del día',
+					description:
+						'Pagina web que hacer una petición a la api de la NASA (astonomy-picture-day) par obtener la imagen (o video) astronomica del día o de una fecha especifica, además de una descripción de la imagen'
+				},
+				buscaminas: {
+					name: 'Buscamnias',
+					mainImageAlt: 'Imagen de el proyecto Buscamnias',
+					description:
+						'Juego clásico de buscaminas desarrollado con HTML, CSS y JavaScript, permitiendo elegir el tamaño del tablero y guardando la preferencias.'
 				}
 			}
 		}
 	},
 	en: {
 		index: {
-			title: 'Cristian Morales Portfolio | Software Development Trainee',
+			title: 'Cristian Morales Portfolio | Trainee in Software Development',
 			description:
-				'Software development trainee focused on web development with skills in various platforms such as Mobile and Desktop.'
+				'Trainee in software development focused on web development with skills in various platforms such as Mobile and Desktop.'
 		},
 		networks: {
 			copyMessage: 'Copied to clipboard'
@@ -94,15 +134,15 @@ export const ui = {
 			imageAlt: 'Photo of Cristian Fernando Morales Diaz'
 		},
 		about: {
-			sectionTitle: 'About me',
-			text: '<p>I enjoy <strong>acquiring</strong> new knowledge and <strong>sharing it</strong> with others. I love exploring programming and technology, and I am currently a <strong>trainee</strong> in the field of <strong>web development</strong>. My goal is to continue specializing and advance to a senior level in this area.</p> <p>I participated in a web development event where I achieved <strong>second</strong> place. During the event, I developed a <strong>management system</strong> for a <strong>library</strong>, completing both the <strong>backend</strong> and <strong>frontend</strong>, as well as configuring the <strong>database</strong> in just 8 hours.</p>'
+			sectionTitle: 'About Me',
+			text: '<p>I enjoy <strong>acquiring</strong> new knowledge and <strong>sharing</strong> it with others. I like exploring programming and technology, and I am currently a <strong>trainee</strong> in the field of <strong>web development</strong>. My goal is to continue specializing and advance toward a senior role in this area.</p> <p>I participated in a web development event where I achieved <strong>second</strong> place. During the event, I developed a <strong>management system</strong> for a <strong>library</strong>, completing both the <strong>backend</strong> and the <strong>frontend</strong>, as well as the <strong>database</strong> setup within 8 hours.</p>'
 		},
 		experience: {
 			sectionTitle: 'Work Experience',
 			jobs: {
 				wm: {
 					summary:
-						'Responsible for conducting quality assurance tests on the <strong>Meters NG</strong> application, ensuring that all features worked correctly. This included verifying that users could take readings, complete validations, and issue invoices without problems, as well as reviewing configurations made from the web portal to ensure a smooth field experience.'
+						'Responsible for performing quality tests on the <strong>Meters NG</strong> application, ensuring all its functions operated correctly. This included making sure users could take readings, complete validations, and issue invoices smoothly, as well as reviewing configurations made from the web portal to ensure a seamless field experience.'
 				}
 			}
 		},
@@ -113,7 +153,7 @@ export const ui = {
 					certificateName: 'Technology in Software Analysis and Development'
 				},
 				'sena-fbpj': {
-					certificateName: 'Course in Basic Java Programming Fundamentals'
+					certificateName: 'Course in Basic Fundamentals in Java Programming'
 				},
 				'sena-acc': {
 					certificateName: 'Understanding of Cybersecurity Concepts'
@@ -122,29 +162,68 @@ export const ui = {
 		},
 		projects: {
 			sectionTitle: 'Projects',
+			seeMoreText: 'See more...',
+			cardProjectTitle: 'Click to see project details',
+			seeDemoText: 'View demo',
+			seeProjectDemoText: 'Click to see project demo',
+			seeMoreProjects: 'See More Projects',
 			projects: {
 				votaciones: {
+					api: {
+						name: 'Voting API v2',
+						mainImageAlt: 'Image of a response from the Voting API v2 project',
+						description:
+							'API developed with JavaScript to manage voting for CGAO (SENA), allowing requests from both the mobile and web applications; using SQLite (or MySQL) as the database.'
+					},
 					web: {
-						login: {
-							mainImageAlt:
-								'Image of the login screen of the web app for the Votaciones v2 project'
-						}
+						mainImageAlt:
+							'Image of the login screen in the Voting v2 web application',
+						name: 'Voting Web v2',
+						description:
+							'Website for participating in CGAO (SENA) voting, creating candidate profiles, and managing the application administratively.'
 					},
 					app: {
-						login: {
-							mainImageAlt:
-								'Image of the login screen of the mobile app for the Votaciones v2 project'
-						}
+						mainImageAlt:
+							'Image of the login screen in the Voting v2 mobile application',
+						name: 'Voting Mobile App v2',
+						description:
+							'Mobile app for participating in CGAO (SENA) voting, including candidate profile creation.'
 					}
 				},
 				hojaDeVida: {
-					mainImageAlt: 'Image of the Hoja de Vida web page'
+					name: 'Resume',
+					mainImageAlt: 'Image of the resume webpage',
+					description:
+						'Resume presented as a webpage to showcase information about me, experience, and completed projects as well as contact information.'
 				},
 				todoCm: {
-					mainImageAlt: 'Image of the Todo CM mobile app (Task list)'
+					name: 'TODO CM v2',
+					mainImageAlt: 'Image of the TODO CM mobile app (Task List)',
+					description:
+						'Task list app that allows organization into folders and setting notifications for specific times or dates.'
 				},
 				videoPlayer: {
-					mainImageAlt: 'Image of the Video Player web app'
+					name: 'Video Player',
+					mainImageAlt: 'Image of the Video Player project',
+					description:
+						'Webpage that allows uploading a local or URL video for playback, with various controls for navigating and viewing settings.'
+				},
+				touchCommand: {
+					name: 'Touch Command',
+					mainImageAlt: "Example image of executing the 'touch' command",
+					description: 'Touch command to quickly create files and folders.'
+				},
+				astronomyPictureDay: {
+					name: 'Astronomy Picture of the Day',
+					mainImageAlt: 'Image of the Astronomy Picture of the Day project',
+					description:
+						"Webpage that makes a request to NASA's API (astronomy-picture-day) to retrieve the astronomy image (or video) of the day or a specific date, including a description of the image."
+				},
+				buscaminas: {
+					name: 'Minesweeper',
+					mainImageAlt: 'Image of the Minesweeper project',
+					description:
+						'Classic Minesweeper game developed with HTML, CSS, and JavaScript, allowing board size selection and preference saving.'
 				}
 			}
 		}
