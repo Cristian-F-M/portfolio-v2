@@ -1,0 +1,34 @@
+---
+import { Tooltip } from "react-tooltip";
+
+interface Props {
+  icon: string;
+  text: string;
+  id: string;
+}
+
+const { icon, text, id } = Astro.props;
+---
+
+<div
+  data-tooltip-id={id}
+  data-tooltip-content={text}
+  class="size-7 bg-white cursor-help flex items-center justify-center relative dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition-all duration-200 [&_svg]:size-fsull [&_svg]:block"
+>
+  <svg class="w-10/12 h-full">
+    <use href={`/icons/skills-icons.svg#${icon}`}></use>
+  </svg>
+  <Tooltip client:load id={id} />
+</div>
+
+<script is:inline define:vars={{ id }}>
+  const div = document.querySelector(`[data-tooltip-id='${id}']`);
+
+  if (div) {
+    div.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+    });
+  }
+</script>
+
