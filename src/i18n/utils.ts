@@ -6,12 +6,12 @@ export function getLangFromUrl(url: URL) {
 	if (lang in ui) return lang as keyof typeof ui
 	return defaultLang
 }
-
-type TFnType = (obj: (typeof ui)[keyof typeof ui]) => string
+type LangObj = (typeof ui)[typeof defaultLang]
+type TFnType = (obj: LangObj) => string
 
 export function useTranslations(lang: keyof typeof ui) {
 	return function t(key: TFnType) {
-		const currentLang = structuredClone(ui[lang])
+		const currentLang = structuredClone(ui[lang]) as LangObj
 		const defaultLangClone = structuredClone(ui[defaultLang])
 		return key(currentLang) || key(defaultLangClone)
 	}
