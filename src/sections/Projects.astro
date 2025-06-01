@@ -1,0 +1,38 @@
+---
+import Section from "@/components/Section.astro";
+import Code from "@/icons/Code.svg";
+import IA from "@/icons/IA.svg";
+import ProjectCard from "@/components/ProjectCard.astro";
+import { useTranslations } from "@/i18n/utils";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { PROJECTS } from "@/constants/Projects";
+import type { languages } from "@/i18n/ui";
+
+const lang = Astro.params.lang as keyof typeof languages;
+const t = useTranslations(lang);
+---
+
+<Section title={t((lang) => lang.projects.sectionTitle)} id="projects">
+  <Code class="size-8 -m-2" slot={"icon"} />
+  <div class="mt-6 flex gap-4 flex-wrap">
+    {
+      PROJECTS.filter((p) => p.isAppMobile || p.isActive)
+        .slice(0, 6)
+        .map((project, index) => {
+          return <ProjectCard project={project} index={index} />;
+        })
+    }
+  </div>
+
+  <div class="text-center mt-16">
+    <button
+      data-url={getRelativeLocaleUrl(lang, "projects")}
+      data-target="_self"
+      class="inline-flex items-center justify-center gap-1 whitespace-nowrap [&_svg]:pointer-events-none [&_svg]:size-4 h-11 bg-gradient-to-r from-green-700 via-emerald-700 to-green-700 text-white px-7 py-4 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 text-md cursor-pointer active:from-green-600 active:via-emerald-600 active:to-green-600"
+      onclick="event.preventDefault();  window.open(this.dataset.url, this.dataset.target ?? '_blank');"
+    >
+      <IA />
+      {t((lang) => lang.projects.seeMoreProjects)}
+    </button>
+  </div>
+</Section>
