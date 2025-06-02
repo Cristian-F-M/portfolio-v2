@@ -18,7 +18,7 @@ const { icon, text, id } = Astro.props;
   <svg class="w-10/12 h-full">
     <use href={`/icons/skills-icons.svg#${icon}`}></use>
   </svg>
-  <Tooltip client:load id={id} />
+  <Tooltip client:load id={id} className="z-10" />
 </div>
 
 <script is:inline define:vars={{ id }}>
@@ -31,4 +31,3 @@ const { icon, text, id } = Astro.props;
     });
   }
 </script>
-
