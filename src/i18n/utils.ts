@@ -13,7 +13,12 @@ export function useTranslations(lang: keyof typeof ui) {
 	return function t(key: TFnType) {
 		const currentLang = structuredClone(ui[lang]) as LangObj
 		const defaultLangClone = structuredClone(ui[defaultLang])
-		return key(currentLang) || key(defaultLangClone)
+
+		try {
+			return key(currentLang)
+		} catch {
+			return key(defaultLangClone)
+		}
 	}
 }
 
