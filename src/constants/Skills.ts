@@ -30,6 +30,6 @@ export const SKILLS: Skill[] = [
 	{ name: 'Java', icon: '#java', color: '#f8a133' },
 	{ name: 'Zustand', icon: '#zustand', color: '#685B4F' },
 	{ name: 'Expo', icon: '#expo' },
-	{ name: '(JWT JSON Web Token)', icon: '#jsonwebtoken', color: '#d740ff' },
+	{ name: 'JSON Web Token (JWT)', icon: '#jsonwebtoken', color: '#d740ff' },
 	{ name: 'React Native', icon: '#react-native', color: '#2de2ff' }
 ] as const
