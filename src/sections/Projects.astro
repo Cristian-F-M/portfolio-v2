@@ -62,7 +62,7 @@ const t = useTranslations(lang);
       ".shine-effect",
     ) as HTMLDivElement;
 
-    console.log(index);
+    if (!shineEffect) return;
 
     shineEffect.style.animationDuration = `${animationDuration}s`;
     shineEffect.classList.add("animate-shine-effect");
@@ -92,7 +92,7 @@ const t = useTranslations(lang);
     const cantCards = hexagons.length;
     const intervalTime = Math.max(maxSpeed, minSpeed / cantCards);
 
-    animateRandomShine()
+    animateRandomShine();
     animateInterval = setInterval(animateRandomShine, intervalTime);
   }
 </script>
