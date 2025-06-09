@@ -31,7 +31,6 @@ const t = useTranslations(lang);
     {/* Shine effect */}
     <div
       class={`shine-effect animate-shine-effect absolute pointer-events-none inset-0 bg-gradient-to-r from-transparent via-white/50 to-white/40 group-hover:to-white/10 transform -skew-x-12 transition-transform duration-700 -translate-x-full z-500`}
-      style={`--shine-effect-delay: ${index * 1.5}s`}
     >
     </div>
 
@@ -169,11 +168,5 @@ const t = useTranslations(lang);
     transition: all 0.2s ease allow-discrete;
     transform: translateY(10px);
     opacity: 0;
-  }
-</style>
-
-<style>
-  .shine-effect {
-    animation-delay: var(--shine-effect-delay, 0.5s);
   }
 </style>
