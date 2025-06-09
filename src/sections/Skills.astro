@@ -563,14 +563,11 @@ const t = useTranslations(lang);
 
     if (maxMovementReachedTimeout) clearTimeout(maxMovementReachedTimeout);
 
-    if (maxMovementReached) {
-      messageInfo.classList.add("show");
+    maxMovementReachedTimeout = setTimeout(() => {
+      messageInfo.classList.remove("show");
+    }, 2000);
 
-      maxMovementReachedTimeout = setTimeout(() => {
-        messageInfo.classList.remove("show");
-      }, 2000);
-      return;
-    }
+    if (maxMovementReached) return messageInfo.classList.add("show");
 
     mainGroup.setAttribute(
       "transform",
