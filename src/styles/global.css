@@ -4,29 +4,11 @@
 
 @theme {
 	--font-raleway: "Raleway Variable";
-	--animate-shine-effect: shine-effect 1.5s cubic-bezier(.25,1.06,.89,1.02) infinite;
+}
 
-	@keyframes shine-effect {
-		70% {
-			transform: translateX(110%);
-			opacity: 0;
-		}
-
-		80% {
-			transform: translateX(110%);
-			opacity: 0;
-		}
-
-		90% {
-			transform: translateX(110%);
-			opacity: 0;
-		}
-    
-		100% {
-			transform: translateX(110%);
-			opacity: 0;
-		}
-	}
+.animate-shine-effect {
+  opacity: 1;
+	animation: shine-effect 1.5s cubic-bezier(0.25, 1.06, 0.89, 1.02);
 }
 
 html {
@@ -60,4 +42,26 @@ cm-toast.show span {
 
 strong {
 	@apply text-emerald-600 dark:text-emerald-400;
+}
+
+@keyframes shine-effect {
+	70% {
+		transform: translateX(110%);
+		opacity: 0;
+	}
+
+	80% {
+		transform: translateX(110%);
+		opacity: 0;
+	}
+
+	90% {
+		transform: translateX(110%);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateX(110%);
+		opacity: 0;
+	}
 }
