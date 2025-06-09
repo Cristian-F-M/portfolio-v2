@@ -6,7 +6,7 @@ import type { languages } from "@/i18n/ui";
 
 const lang = Astro.params.lang as keyof typeof languages;
 const t = useTranslations(lang);
-const copyMessage = t(lang => lang.networks.copyMessage)
+const copyMessage = t((lang) => lang.networks.copyMessage);
 ---
 
 <div class="networks flex flex-row gap-1.5">
@@ -16,6 +16,8 @@ const copyMessage = t(lang => lang.networks.copyMessage)
 <script is:inline define:vars={{ copyMessage }}>
 
   const networks = document.querySelectorAll(".networks a");
+  const audio = document.createElement("audio");
+  audio.src = "/sounds/network-hover.wav";
 
   networks.forEach((network) => {
     if (!(network instanceof HTMLAnchorElement)) return;
@@ -31,11 +33,19 @@ const copyMessage = t(lang => lang.networks.copyMessage)
       navigator.clipboard
         .writeText(href)
         .then(() => {
-          document.querySelector("cm-toast").show(copyMessage, { duration: 1000 });
+          document
+            .querySelector("cm-toast")
+            .show(copyMessage, { duration: 1000 });
         })
         .catch((err) => {
           console.log("no Se puedo copiar", err);
         });
+    });
+
+    network.addEventListener("mouseenter", () => {
+      audio.currentTime = 0
+      audio.volume = 0.2
+      audio.play()
     });
   });
 </script>
