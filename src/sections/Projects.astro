@@ -36,3 +36,52 @@ const t = useTranslations(lang);
     </button>
   </div>
 </Section>
+
+<script>
+  const cards = document.querySelectorAll(
+    ".card",
+  ) as NodeListOf<HTMLDivElement>;
+
+  const cantCards = cards.length;
+  /** in Seconds */
+  const animationDuration = 1.5;
+  const maxSpeed = 2000;
+  const minSpeed = 2000;
+  const intervalTime = Math.max(maxSpeed, minSpeed / cantCards);
+  let animateInterval: null | NodeJS.Timeout = null;
+
+  setInterval(animateRandomShine, intervalTime);
+  animateRandomShine();
+
+  function animateRandomShine() {
+    if (cards.length <= 0) return;
+
+    const index = Math.floor(Math.random() * cards.length);
+    const randomCard = cards[index];
+    const shineEffect = randomCard.querySelector(
+      ".shine-effect",
+    ) as HTMLDivElement;
+
+    console.log(index);
+
+    shineEffect.style.animationDuration = `${animationDuration}s`;
+    shineEffect.classList.add("animate-shine-effect");
+
+    shineEffect.addEventListener("animationend", (event) => {
+      shineEffect.classList.remove("animate-shine-effect");
+    });
+  }
+
+  document.addEventListener("visibilitychange", () => {
+    const { visibilityState: state } = document;
+    if (state === "hidden" && animateInterval) clearTimeout(animateInterval);
+
+    if (state === "visible") {
+      const hexagons = document.querySelectorAll(".hexagon");
+      const cantHexagons = hexagons.length;
+      const intervalTime = Math.max(maxSpeed, minSpeed / cantHexagons);
+
+      animateInterval = setInterval(animateRandomShine, intervalTime);
+    }
+  });
+</script>
