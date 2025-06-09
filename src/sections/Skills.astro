@@ -554,8 +554,8 @@ const t = useTranslations(lang);
     const { width: svgWidth, height: svgHeight } = svg.getBoundingClientRect();
     const { width: mainGroupWidth, height: mainGroupHeight } =
       mainGroup.getBoundingClientRect();
-    const widthTolerance = svgWidth / 1.5 + mainGroupWidth;
-    const heightTolerance = svgHeight / 1.5 + mainGroupHeight;
+    const widthTolerance = svgWidth / 1.5 + mainGroupWidth * 0.3;
+    const heightTolerance = svgHeight / 1.5 + mainGroupHeight * 0.3;
 
     const [tx2, ty2] = [tx, ty].map(Math.abs);
 
