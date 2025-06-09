@@ -377,6 +377,8 @@ const t = useTranslations(lang);
   function animateRandomShine() {
     const hexagons = document.querySelectorAll(".hexagon");
 
+    console.log("animating skill");
+
     if (hexagons.length <= 0) return;
 
     const index = Math.floor(Math.random() * skills.length);
@@ -462,13 +464,6 @@ const t = useTranslations(lang);
     return newPoints.join(" ");
   }
 
-  document.addEventListener("visibilitychange", () => {
-    const { visibilityState: state } = document;
-    if (state === "hidden" && animateInterval) clearTimeout(animateInterval);
-
-    if (state === "visible") startAnimation();
-  });
-
   window.addEventListener("blur", function () {
     if (animateInterval) clearTimeout(animateInterval);
   });
@@ -482,7 +477,7 @@ const t = useTranslations(lang);
     const cantHexagons = hexagons.length;
     const intervalTime = Math.max(maxSpeed, minSpeed / cantHexagons);
 
-    animateRandomShine();
+    if (animateInterval) clearTimeout(animateInterval);
     animateInterval = setInterval(animateRandomShine, intervalTime);
   }
 
