@@ -1,0 +1,580 @@
+---
+import Section from "@/components/Section.astro";
+import type { languages } from "@/i18n/ui";
+import { useTranslations } from "@/i18n/utils";
+import Bulb from "@/icons/Bulb.svg";
+import VolumeOff from "@/icons/VolumeOff.svg";
+import VolumeOn from "@/icons/VolumeOn.svg";
+import { SKILLS } from "@/constants/Skills";
+
+const lang = Astro.params.lang as keyof typeof languages;
+const t = useTranslations(lang);
+---
+
+<Section
+  id="skills"
+  title={t((lang) => lang.skills.sectionTitle)}
+  class="relative"
+>
+  <Bulb class="size-8" slot="icon" />
+  <div
+    id="skills-board-wrapper"
+    class="w-full h-[500px] rounded shadow-inner relative"
+  >
+    <svg
+      class="size-full bg-emerald-700 cursor-grab shadow-emerald-900 relative"
+      id="skills-board"
+    >
+      <defs>
+        <linearGradient id="lightning-gradient" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="10%" stop-color="white" stop-opacity="0.6"></stop>
+          <stop offset="40%" stop-color="white" stop-opacity="0.15"></stop>
+          <stop offset="100%" stop-color="white" stop-opacity="0"></stop>
+        </linearGradient>
+
+        <linearGradient id="shine-gradient" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="white" stop-opacity="0.1"></stop>
+          <stop offset="50%" stop-color="white" stop-opacity="0.7"></stop>
+          <stop offset="100%" stop-color="white" stop-opacity="0.1"></stop>
+        </linearGradient>
+
+        <!-- clip path -->
+        <clipPath id="clip-path">
+          <polygon
+            points="430,250 415,275.98076211353316 385,275.98076211353316 370,250 385,224.01923788646684 415,224.01923788646684"
+          ></polygon>
+        </clipPath>
+
+        <!-- shine effect -->
+        <polygon
+          class="lightning-effect"
+          id="lightning-effect"
+          fill="url(#lightning-gradient)"
+          pointer-events="none"
+          points=""></polygon>
+
+        <!-- Icon group -->
+        <g id="icon-group" transform="translate(0, 0)">
+          <use href="/icons/skills-icons.svg#react"></use>
+        </g>
+
+        <!-- shine animation -->
+        <g transform="rotate(45 0 0)" id="shine-group" class="shine-animation">
+          <rect
+            x="0"
+            y="0"
+            width="0"
+            height="0"
+            fill="url(#shine-gradient)"
+            transform="rotate(30 0 0) skewX(-20)"
+            pointer-events="none"
+          >
+            <animateTransform
+              attributeName="transform"
+              type="translate"
+              from="-100 0"
+              to="100 0"
+              dur="1.5s"
+              repeatCount="1"
+            >
+            </animateTransform>
+          </rect>
+        </g>
+      </defs>
+
+      <g id="main-group" transform="translate(0,0) scale(1 1)"></g>
+    </svg>
+
+    <div
+      id="message-info"
+      class="absolute bottom-4 top-(--margin) left-1/2 size-fit -translate-x-1/2 bg-white/80 backdrop-blur-md text-gray-800 px-4 py-2 rounded-lg shadow-lg border border-gray-200 text-sm font-medium animate-fade-in select-none"
+    >
+      {t((lang) => lang.skills.endBoard)}
+    </div>
+    <div
+      id="tooltip"
+      class="absolute top-(--top) left-(--left) pointer-events-none px-3 py-1 bg-black/70 text-white rounded"
+    >
+    </div>
+  </div>
+
+  <button
+    id="hexagon-sound-toggle-volume"
+    class="absolute p-1 bg-emerald-900 rounded top-0 right-0 cursor-pointer text-white size-8 [&_svg]:size-10/12 [&_svg]:pointer-events-none flex items-center justify-center hover:bg-emerald-800 hover:scale-110 active:bg-emerald-600 transition"
+  >
+    <VolumeOff id="volumeoff-icon" />
+    <VolumeOn id="volumeon-icon" />
+  </button>
+  <audio src="/sounds/game-interface.m4a" id="hexagon-sound" hidden></audio>
+</Section>
+
+<style>
+  #hexagon-sound-toggle-volume {
+    svg {
+      display: none;
+    }
+
+    &.volumeon {
+      svg#volumeoff-icon {
+        display: none;
+      }
+
+      svg#volumeon-icon {
+        display: block;
+      }
+    }
+
+    & {
+      svg#volumeon-icon {
+        display: none;
+      }
+
+      svg#volumeoff-icon {
+        display: block;
+      }
+    }
+  }
+
+  #message-info {
+    --margin: 20px;
+
+    display: none;
+    opacity: 0;
+    transition:
+      display 0.4s allow-discrete,
+      opacity 0.4s,
+      scale 0.2s;
+  }
+
+  #message-info.show {
+    display: block;
+    scale: 1;
+    opacity: 1;
+
+    @starting-style {
+      scale: 0.8;
+      opacity: 0;
+    }
+  }
+</style>
+
+<style>
+  #tooltip {
+    display: none;
+    transition:
+      display 0.1s allow-discrete,
+      opacity 0.1s;
+    opacity: 0;
+  }
+
+  #tooltip.show {
+    display: block;
+    opacity: 1;
+
+    @starting-style {
+      opacity: 0;
+    }
+  }
+</style>
+
+<script is:inline define:vars={{ skills: SKILLS }}>
+  const skillsPath = "/icons/skills-icons.svg";
+  const animationDuration = 1.5;
+
+  const tooltip = document.querySelector("#tooltip");
+  const hexagonSound = document.querySelector("#hexagon-sound");
+  const lightningEffect = document.querySelector("#lightning-effect");
+  const shineAnimation = document.querySelector("#shine-group");
+  const clipPath = document.querySelector("#clip-path");
+  let animateInterval = null;
+
+  const svg = document.querySelector("#skills-board");
+  const mainGroup = svg.querySelector("#main-group");
+  const NAME_SPACE_URI = "http://www.w3.org/2000/svg";
+  const HEX_SIZE = 30;
+  const size = HEX_SIZE * 2;
+
+  const skillsBoardWrapper = document.querySelector("#skills-board-wrapper");
+  const { width: svgWidth, height: svgHeight } = svg.getBoundingClientRect();
+  const { left: wrapperLeft, top: wrapperTop } =
+    skillsBoardWrapper.getBoundingClientRect();
+
+  const centerX = svgWidth / 2;
+  const centerY = svgHeight / 2;
+  const maxSpeed = 2000;
+  const minSpeed = 2000;
+
+  drawSkillsHexes();
+
+  // main function
+  function drawSkillsHexes() {
+    const coords = generateHexCoords(skills.length);
+
+    coords.forEach(({ q, r }, i) => {
+      const { x, y } = axialToPixel(q, r);
+      const hexagon = createHexagon(centerX + x, centerY + y, skills[i]);
+      mainGroup.appendChild(hexagon);
+    });
+
+    svg.appendChild(mainGroup);
+
+    const hexagons = document.querySelectorAll(".hexagon");
+
+    const cantHexagons = hexagons.length;
+    const intervalTime = Math.max(maxSpeed, minSpeed / cantHexagons);
+    animateInterval = setInterval(animateRandomShine, intervalTime);
+    animateRandomShine();
+  }
+
+  // Create g elemento for each hexagon
+  function createHexagon(x, y, skill) {
+    if (!skill) skill = { name: "", color: "#ccc5", icon: "#s" };
+    const points = createPoints(x, y, HEX_SIZE, 6);
+    const group = createElementNS("g");
+    group.setAttribute("class", "hexagon");
+    group.setAttribute("data-x", String(x));
+    group.setAttribute("data-y", String(y));
+    group.setAttribute("data-points", points.join(" "));
+    group.setAttribute("data-skill", skill.name);
+
+    const polygon = createElementNS("polygon");
+    polygon.setAttribute("points", points.join(" "));
+    polygon.setAttribute("fill", skill.color || "#8f8f8f");
+    polygon.setAttribute("stroke", "#fff");
+    polygon.setAttribute("stroke-width", "1.5");
+    polygon.setAttribute("fill-opacity", "1");
+
+    // shine effect
+    const lightningEffectClone = lightningEffect.cloneNode();
+    lightningEffectClone.setAttribute("points", points.join(" "));
+    lightningEffectClone.setAttribute("id", `shine-effect-${x}-${y}`);
+
+    // icon group
+    const iconSize = size * 0.5;
+    const [iconX, iconY] = [x, y].map((v) => v - iconSize / 2);
+    const iconGroup = createElementNS("g");
+
+    iconGroup.setAttribute("transform", `translate(${iconX}, ${iconY})`);
+    iconGroup.classList.add("svg-icon");
+
+    const use = createElementNS("use");
+    use.setAttribute("href", `${skillsPath}${skill.icon}`);
+    use.setAttribute("width", String(iconSize));
+    use.setAttribute("height", String(iconSize));
+
+    iconGroup.appendChild(use);
+
+    // clip-path
+    const clipPathClone = clipPath.cloneNode(true);
+    const clipPathPolygon = clipPathClone.querySelector("polygon");
+    const clipPathId = `clip-path-${x}-${y}`;
+
+    clipPathClone.setAttribute("id", clipPathId);
+    const newPoints = expandClipPath(points, 0.1);
+    clipPathPolygon.setAttribute("points", newPoints);
+
+    svg.querySelector("defs")?.appendChild(clipPathClone);
+
+    group.setAttribute("clip-path", `url(#${clipPathId})`);
+    group.appendChild(polygon);
+    group.appendChild(lightningEffectClone);
+    group.appendChild(iconGroup);
+
+    group.addEventListener("mouseenter", (event) => {
+      event.preventDefault();
+      if (window.soundActive) {
+        hexagonSound.volume = 0.1;
+        hexagonSound.currentTime = 0;
+        hexagonSound.play();
+      }
+
+      setTooltipPosition(event, skill);
+    });
+
+    group.addEventListener("mousemove", (event) =>
+      setTooltipPosition(event, skill),
+    );
+
+    group.addEventListener("mouseleave", () => {
+      tooltip.classList.remove("show");
+    });
+
+    return group;
+  }
+
+  function setTooltipPosition(event, skill) {
+    const { height: toolHeight } = tooltip.getBoundingClientRect();
+    const { left: wrapperLeft, top: wrapperTop } =
+      skillsBoardWrapper.getBoundingClientRect();
+
+    const left = event.clientX - wrapperLeft;
+    const top = event.clientY - wrapperTop - toolHeight - 10;
+
+    tooltip.textContent = skill.name;
+
+    tooltip.style.setProperty("--left", `${left}px`);
+    tooltip.style.setProperty("--top", `${top}px`);
+    tooltip.classList.add("show");
+  }
+
+  // Create points
+  function createPoints(x, y, size, sides) {
+    const points = Array.from({ length: sides }).map((_, i) => {
+      const angle = (Math.PI / 3) * i;
+      const px = x + size * Math.cos(angle);
+      const py = y + size * Math.sin(angle);
+      return `${px},${py}`;
+    });
+
+    return points;
+  }
+
+  // Generate coordinates of the hexagons
+  function generateHexCoords(n) {
+    const coords = [];
+    const visited = new Set();
+    const queue = [{ q: 0, r: 0 }];
+
+    const directions = [
+      { dq: 1, dr: 0 },
+      { dq: 1, dr: -1 },
+      { dq: 0, dr: -1 },
+      { dq: -1, dr: 0 },
+      { dq: -1, dr: 1 },
+      { dq: 0, dr: 1 },
+    ];
+
+    while (coords.length < n && queue.length > 0) {
+      const firstElement = queue.shift();
+
+      if (!firstElement) continue;
+
+      const { q, r } = firstElement;
+      const key = `${q},${r}`;
+
+      if (visited.has(key)) continue;
+
+      coords.push({ q, r });
+      visited.add(key);
+
+      for (const { dq, dr } of directions) {
+        const nq = q + dq;
+        const nr = r + dr;
+        const nkey = `${nq},${nr}`;
+
+        if (!visited.has(nkey)) queue.push({ q: nq, r: nr });
+      }
+    }
+    return coords;
+  }
+
+  // Convert axial coords to pixel coords
+  function axialToPixel(q, r) {
+    const x = ((HEX_SIZE * 3) / 2) * q;
+    const y = HEX_SIZE * Math.sqrt(3) * (r + q / 2);
+    return { x, y };
+  }
+
+  // random animation
+  function animateRandomShine() {
+    const hexagons = document.querySelectorAll(".hexagon");
+
+    if (hexagons.length <= 0) return;
+
+    const index = Math.floor(Math.random() * skills.length);
+    const hexagon = hexagons[index];
+
+    const isPlaying = hexagon.getAttribute("isPlaying") ?? false;
+
+    if (isPlaying) return;
+
+    const shineAnimation = document.querySelector("#shine-group");
+
+    const shineAnimationClone = shineAnimation.cloneNode(true);
+    const rectShineAnimation = shineAnimationClone.querySelector("rect");
+    const animateTransform =
+      rectShineAnimation.querySelector("animateTransform");
+
+    const { x, y } = hexagon.dataset;
+    let times = Number(shineAnimation.getAttribute("times") ?? "0");
+    times++;
+
+    shineAnimationClone.setAttribute("id", `shine-group-(${x} ${y})`);
+    shineAnimationClone.setAttribute("transform", `rotate(45 ${x} ${y})`);
+    shineAnimation.setAttribute("times", String(times));
+
+    const [rectX, rectY] =
+      x && y ? [x, y].map((v) => Number(v) - size / 2) : [0, 0];
+
+    rectShineAnimation.setAttribute("x", String(rectX));
+    rectShineAnimation.setAttribute("y", String(rectY));
+    rectShineAnimation.setAttribute("width", String(size));
+    rectShineAnimation.setAttribute("height", String(size));
+    rectShineAnimation.setAttribute(
+      "transform",
+      `rotate(30 ${x} ${y}) translate(-100 0)`,
+    );
+
+    animateTransform.addEventListener("endEvent", (e) => {
+      hexagon.removeAttribute("isPlaying");
+      shineAnimationClone.remove();
+    });
+
+    animateTransform.addEventListener("beginEvent", () => {});
+
+    animateTransform.setAttribute("dur", `${animationDuration}s`);
+
+    // Agregar el shine animation al hexagon
+    hexagon.appendChild(shineAnimationClone);
+
+    // Iniciar la animación y agregar el atributo `isPlaying` al hexágono
+    requestAnimationFrame(() => {
+      animateTransform.beginElement();
+      hexagon.setAttribute("isPlaying", "true");
+    });
+  }
+
+  // CreateElementNS function
+  function createElementNS(qualifiedName) {
+    const e = document.createElementNS(NAME_SPACE_URI, qualifiedName);
+    return e;
+  }
+
+  function expandClipPath(points, expansionFactor) {
+    let newPoints = points.map((p) => p.split(",").map((v) => Number(v)));
+
+    const centers = newPoints.reduce(
+      ([sumX, sumY], [x, y]) => [sumX + x, sumY + y],
+      [0, 0],
+    );
+
+    const [centerX, centerY] = centers.map(
+      (center) => center / newPoints.length,
+    );
+
+    newPoints = newPoints.map(([x, y]) => {
+      const dx = x - centerX;
+      const dy = y - centerY;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      const scale = (distance * (1 + expansionFactor)) / distance;
+
+      const point = `${centerX + dx * scale},${centerY + dy * scale}`;
+      return point;
+    });
+    return newPoints.join(" ");
+  }
+
+  document.addEventListener("visibilitychange", () => {
+    const { visibilityState: state } = document;
+    if (state === "hidden" && animateInterval) clearTimeout(animateInterval);
+
+    if (state === "visible") {
+      const hexagons = document.querySelectorAll(".hexagon");
+      const cantHexagons = hexagons.length;
+      const intervalTime = Math.max(maxSpeed, minSpeed / cantHexagons);
+
+      animateInterval = setInterval(animateRandomShine, intervalTime);
+    }
+  });
+</script>
+
+<script>
+  window.soundActive = false;
+
+  const hexagonSoundToggleVolume = document.querySelector(
+    "#hexagon-sound-toggle-volume",
+  ) as HTMLDivElement;
+
+  hexagonSoundToggleVolume?.addEventListener("click", (event) => {
+    const target = event.target as HTMLDivElement;
+    target.classList.toggle("volumeon");
+    window.soundActive = !window.soundActive;
+  });
+</script>
+
+<script>
+  const svg = document.querySelector("svg#skills-board") as SVGElement;
+  const messageInfo = document.querySelector("#message-info") as HTMLDivElement;
+  const mainGroup = svg.querySelector("#main-group") as SVGGElement;
+
+  let maxMovementReachedTimeout: NodeJS.Timeout | null = null;
+  let moveCenterTimeout: NodeJS.Timeout | null = null;
+  let isDragging = false;
+  let prevX = 0;
+  let prevY = 0;
+
+  svg.addEventListener("mousedown", (event) => {
+    isDragging = true;
+    prevX = event.clientX;
+    prevY = event.clientY;
+    svg.style.cursor = "grabbing";
+  });
+
+  svg.addEventListener("mouseup", () => {
+    isDragging = false;
+    svg.style.cursor = "grab";
+  });
+
+  svg.addEventListener("mouseleave", () => {
+    isDragging = false;
+    svg.style.cursor = "grab";
+
+    if (moveCenterTimeout) clearTimeout(moveCenterTimeout);
+    moveCenterTimeout = setTimeout(() => {
+      mainGroup.style.transition = "all 0.4s";
+      mainGroup.setAttribute("transform", `translate(${0},${0}) scale(1 1)`);
+    }, 4000);
+  });
+
+  svg.addEventListener("mousemove", (event) => {
+    if (moveCenterTimeout) clearTimeout(moveCenterTimeout);
+    moveCenterTimeout = setTimeout(() => {
+      mainGroup.style.transition = "all 0.4s";
+      mainGroup.setAttribute("transform", `translate(0,0) scale(1 1)`);
+    }, 10000);
+    mainGroup.style.transition = "";
+    if (!isDragging) return;
+
+    const dx = event.clientX - prevX;
+    const dy = event.clientY - prevY;
+    prevX = event.clientX;
+    prevY = event.clientY;
+
+    const currentTransform =
+      mainGroup.getAttribute("transform") || "translate(0,0) scale(1 1)";
+    const translateMatch = currentTransform.match(
+      /translate\(([^,]+),([^)]+)\)/,
+    );
+    const scaleMatch = currentTransform.match(/scale\(([^,]+) ([^)]+)\)/);
+    let tx = parseFloat(translateMatch?.[1] || "0");
+    let ty = parseFloat(translateMatch?.[2] || "0");
+    tx += dx;
+    ty += dy;
+
+    const { width: svgWidth, height: svgHeight } = svg.getBoundingClientRect();
+    const { width: mainGroupWidth, height: mainGroupHeight } =
+      mainGroup.getBoundingClientRect();
+    const widthTolerance = svgWidth / 1.5 + mainGroupWidth;
+    const heightTolerance = svgHeight / 1.5 + mainGroupHeight;
+
+    const [tx2, ty2] = [tx, ty].map(Math.abs);
+
+    const maxMovementReached = tx2 > widthTolerance || ty2 > heightTolerance;
+
+    if (maxMovementReachedTimeout) clearTimeout(maxMovementReachedTimeout);
+
+    if (maxMovementReached) {
+      messageInfo.classList.add("show");
+
+      maxMovementReachedTimeout = setTimeout(() => {
+        messageInfo.classList.remove("show");
+      }, 2000);
+      return;
+    }
+
+    mainGroup.setAttribute(
+      "transform",
+      `translate(${tx},${ty}) ${scaleMatch?.[0] ?? "scale(1 1)"}`,
+    );
+  });
+</script>
