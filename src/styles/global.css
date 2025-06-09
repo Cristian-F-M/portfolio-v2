@@ -7,8 +7,8 @@
 }
 
 .animate-shine-effect {
-  opacity: 1;
-	animation: shine-effect 1.5s cubic-bezier(0.25, 1.06, 0.89, 1.02);
+	opacity: 1;
+	animation: shine-effect 1.5s ease;
 }
 
 html {
@@ -45,23 +45,7 @@ strong {
 }
 
 @keyframes shine-effect {
-	70% {
-		transform: translateX(110%);
-		opacity: 0;
-	}
-
-	80% {
-		transform: translateX(110%);
-		opacity: 0;
-	}
-
-	90% {
-		transform: translateX(110%);
-		opacity: 0;
-	}
-
 	100% {
-		transform: translateX(110%);
-		opacity: 0;
+		transform: translateX(200%);
 	}
 }
