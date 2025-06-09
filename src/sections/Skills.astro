@@ -222,8 +222,6 @@ const t = useTranslations(lang);
 
     const cantHexagons = hexagons.length;
     const intervalTime = Math.max(maxSpeed, minSpeed / cantHexagons);
-    animateInterval = setInterval(animateRandomShine, intervalTime);
-    animateRandomShine();
   }
 
   // Create g elemento for each hexagon
@@ -487,6 +485,25 @@ const t = useTranslations(lang);
     animateRandomShine();
     animateInterval = setInterval(animateRandomShine, intervalTime);
   }
+
+  const callback = function (entries, observer) {
+    entries.forEach((entrie) => {
+      const { isIntersecting } = entrie;
+
+      if (isIntersecting) startAnimation();
+      if (!isIntersecting && animateInterval) clearTimeout(animateInterval);
+    });
+  };
+
+  const observer = new IntersectionObserver(callback, {
+    root: null,
+    rootMargin: "60px",
+    threshold: 0,
+  });
+
+  const skillsSection = document.querySelector("#skills");
+
+  if (skillsSection) observer.observe(skillsSection);
 </script>
 
 <script>

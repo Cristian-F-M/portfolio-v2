@@ -50,9 +50,6 @@ const t = useTranslations(lang);
   const intervalTime = Math.max(maxSpeed, minSpeed / cantCards);
   let animateInterval: null | NodeJS.Timeout = null;
 
-  setInterval(animateRandomShine, intervalTime);
-  animateRandomShine();
-
   function animateRandomShine() {
     if (cards.length <= 0) return;
 
@@ -95,4 +92,23 @@ const t = useTranslations(lang);
     animateRandomShine();
     animateInterval = setInterval(animateRandomShine, intervalTime);
   }
+
+  const callback: IntersectionObserverCallback = function (entries, observer) {
+    entries.forEach((entrie) => {
+      const { isIntersecting } = entrie;
+
+      if (isIntersecting) startAnimation();
+      if (!isIntersecting && animateInterval) clearTimeout(animateInterval);
+    });
+  };
+
+  const observer = new IntersectionObserver(callback, {
+    root: null,
+    rootMargin: "60px",
+    threshold: 0,
+  });
+
+  const projectsSection = document.querySelector("#projects");
+
+  if (projectsSection) observer.observe(projectsSection);
 </script>
