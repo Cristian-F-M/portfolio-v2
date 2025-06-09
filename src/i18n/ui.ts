@@ -117,7 +117,11 @@ export const ui = {
 						'Juego clásico de buscaminas desarrollado con HTML, CSS y JavaScript, permitiendo elegir el tamaño del tablero y guardando la preferencias.'
 				}
 			}
-		}
+		},
+    skills: {
+      sectionTitle: 'Habilidades',
+      endBoardText: '🚧 Has llegado al final del board'
+    }
 	},
 	en: {
 		index: {
@@ -226,6 +230,10 @@ export const ui = {
 						'Classic Minesweeper game developed with HTML, CSS, and JavaScript, allowing board size selection and preference saving.'
 				}
 			}
-		}
+		},
+    skills: {
+      sectionTitle: 'Skills',
+      endBoardText: '🚧 You have reached the end of the board'
+    }
 	}
 } as const
