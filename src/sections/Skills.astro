@@ -468,14 +468,25 @@ const t = useTranslations(lang);
     const { visibilityState: state } = document;
     if (state === "hidden" && animateInterval) clearTimeout(animateInterval);
 
-    if (state === "visible") {
-      const hexagons = document.querySelectorAll(".hexagon");
-      const cantHexagons = hexagons.length;
-      const intervalTime = Math.max(maxSpeed, minSpeed / cantHexagons);
-
-      animateInterval = setInterval(animateRandomShine, intervalTime);
-    }
+    if (state === "visible") startAnimation();
   });
+
+  window.addEventListener("blur", function () {
+    if (animateInterval) clearTimeout(animateInterval);
+  });
+
+  window.addEventListener("focus", function () {
+    startAnimation();
+  });
+
+  function startAnimation() {
+    const hexagons = document.querySelectorAll(".hexagon");
+    const cantHexagons = hexagons.length;
+    const intervalTime = Math.max(maxSpeed, minSpeed / cantHexagons);
+
+    animateRandomShine();
+    animateInterval = setInterval(animateRandomShine, intervalTime);
+  }
 </script>
 
 <script>
