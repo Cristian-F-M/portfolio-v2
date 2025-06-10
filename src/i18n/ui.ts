@@ -14,7 +14,8 @@ export const ui = {
 				'Trainee en el desarrollo de software enfocado en el desarrollo web con habilidades en diferentes plataformas como Móvil, Escritorio.'
 		},
 		networks: {
-			copyMessage: 'Copiado al portapapelest'
+			copyMessage: 'Copiado al portapapelest',
+      infoCopyMessage: 'Haz shift + clic para copiar el enlace a la red solcial'
 		},
 		hero: {
 			description:
@@ -130,7 +131,8 @@ export const ui = {
 				'Trainee in software development focused on web development with skills in various platforms such as Mobile and Desktop.'
 		},
 		networks: {
-			copyMessage: 'Copied to clipboard'
+			copyMessage: 'Copied to clipboard',
+      infoCopyMessage: 'Shift + click to copy the link to the social network'
 		},
 		hero: {
 			description:
