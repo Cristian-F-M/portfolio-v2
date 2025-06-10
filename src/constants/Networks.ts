@@ -10,6 +10,7 @@ export interface Network {
 	class?: string
 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 	icon: any
+	urlCopy?: string
 }
 
 export const NETWORKS: Network[] = [
@@ -26,7 +27,8 @@ export const NETWORKS: Network[] = [
 	{
 		href: 'mailto:cfmorales.diaz@gmail.com',
 		id: 'mail',
-		icon: Mail
+		icon: Mail,
+		urlCopy: 'cfmorales.diaz@gmail.com'
 	},
 	{
 		href: 'https://x.com/Morales_M20',
