@@ -26,7 +26,7 @@ const copyMessage = t((lang) => lang.networks.copyMessage);
       if (!isShiftKey) return;
       event.preventDefault();
 
-      const href = network.getAttribute("href");
+      const href = network.dataset.urlCopy;
 
       if (!href) return;
 
