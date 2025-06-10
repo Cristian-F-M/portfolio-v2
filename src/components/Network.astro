@@ -2,7 +2,7 @@
 import type { Network } from "@/constants/Networks";
 import { twMerge as tw } from "tailwind-merge";
 
-type Props  =  Network
+interface Props extends Network {};
 
 const { href, id, class: className, icon: Icon } = Astro.props;
 ---
