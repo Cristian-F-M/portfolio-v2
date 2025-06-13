@@ -1,0 +1,44 @@
+---
+import { languages } from "@/i18n/ui";
+import { PROJECTS } from "@/constants/Projects";
+import Layout from "@/layouts/Layout.astro";
+import { useTranslations } from "@/i18n/utils";
+import ProjectCard from "@/components/ProjectCard.astro";
+
+export function getStaticPaths() {
+  return Object.entries(languages).map(([key, _]) => {
+    return { params: { lang: key } };
+  });
+}
+
+const lang = Astro.params.lang as keyof typeof languages;
+const t = useTranslations(lang);
+---
+
+<Layout
+  title={t((lang) => lang.projects.page.title)}
+  description={t((lang) => lang.projects.page.description)}
+>
+  <header class="w-fit mx-auto max-w-[1200px] mt-10">
+    <h1
+      class="text-center text-5xl md:text-6xl py-2 font-bold bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 dark:from-slate-100 dark:via-blue-100 dark:to-slate-100 bg-clip-text text-transparent"
+    >
+      {t((lang) => lang.projects.page.mainTitle)}
+    </h1>
+    <p
+      class="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed text-center"
+    >
+      {t((lang) => lang.projects.page.paragraph)}
+    </p>
+  </header>
+
+  <main class="mx-auto w-fit max-w-[1200px] py-20">
+    <div class="mt-6 flex gap-4 flex-wrap w-fit justify-center">
+      {
+        PROJECTS.map((project, index) => {
+          return <ProjectCard class="w-78" project={project} />;
+        })
+      }
+    </div>
+  </main>
+</Layout>
