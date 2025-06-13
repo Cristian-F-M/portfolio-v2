@@ -20,7 +20,7 @@ const t = useTranslations(lang);
 
 <a
   class="flex w-64"
-  href={getRelativeLocaleUrl(lang, project.id)}
+  href={getRelativeLocaleUrl(lang, `projects/${project.id}`)}
   id={project.id}
   title={`${t((lang) => lang.projects.cardProjectTitle)} ${getValueByPath(ui[lang], project.name)}`}
 >
@@ -43,6 +43,7 @@ const t = useTranslations(lang);
           data-nimg="1"
           class="w-full h-52 object-cover"
           src={project.mainImage.path}
+          transition:name={`main-image-${project.id}`}
         />
         <div
           class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"
