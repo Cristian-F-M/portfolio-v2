@@ -48,7 +48,7 @@ export const PROJECTS: Project[] = [
 	{
 		id: 'web-votaciones-v2',
 		name: 'projects.projects.votaciones.web.name',
-		description: 'projects.projects.votaciones.web.description', 
+		description: 'projects.projects.votaciones.web.description',
 		mainImage: {
 			path: '/images/projects/votaciones/web/votaciones-web-login.png',
 			alt: 'projects.projects.votaciones.web.mainImageAlt'
@@ -95,7 +95,7 @@ export const PROJECTS: Project[] = [
 		description: 'projects.projects.votaciones.app.description',
 		isAppMobile: true,
 		thereIsApk: false,
-    highlighted: true,
+		highlighted: true,
 		github: 'https://github.com/Cristian-F-M/app-votaciones-v2',
 		skills: [
 			{
@@ -260,7 +260,7 @@ export const PROJECTS: Project[] = [
 		description: 'projects.projects.astronomyPictureDay.description',
 		isActive: true,
 		isAppMobile: false,
-    highlighted: true,
+		highlighted: true,
 		url: 'https://astronomy-picture-day.netlify.app/',
 		github: 'https://github.com/Cristian-F-M/astronomy-picture-day',
 		mainImage: {
@@ -292,7 +292,7 @@ export const PROJECTS: Project[] = [
 		description: 'projects.projects.votaciones.api.description',
 		isActive: false,
 		isAppMobile: false,
-    highlighted: true,
+		highlighted: true,
 		mainImage: {
 			alt: 'projects.projects.votaciones.api.mainImageAlt',
 			path: '/images/projects/votaciones/api/api.png'
@@ -368,5 +368,46 @@ export const PROJECTS: Project[] = [
 				text: 'JavaScript'
 			}
 		]
-	}
+	}, 
+  {
+    id: 'wordle',
+    description: "projects.projects.wordle.description",
+    name: "projects.projects.wordle.name",
+    isActive: true, 
+    isAppMobile: false,
+    url: "https://wordle-alpha-indol.vercel.app/",
+    github: "https://github.com/Cristian-F-M/wordle",
+    mainImage: {
+      path: '/images/projects/wordle/wordle.png',
+      alt: 'projects.projects.wordle.mainImageAlt'
+    },
+    images: [],
+    skills: [
+      {
+        id: 'html',
+        icon: 'html',
+        text: 'HTML'
+      },
+      {
+        id: 'css',
+        icon: 'css',
+        text: 'CSS'
+      },
+      {
+        id: 'javascript',
+        icon: 'javascript',
+        text: 'JavaScript'
+      },
+      {
+        id: 'tailwindcss',
+        icon: 'tailwindcss',
+        text: 'Tailwindcss'
+      }
+    ]
+    
+  }
 ]
+
+export function getProjectById(id: string) {
+	return PROJECTS.find((p) => p.id === id)
+}
