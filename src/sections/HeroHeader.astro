@@ -6,6 +6,8 @@ import Networks from "@/components/Networks.astro";
 import { useTranslations } from "@/i18n/utils";
 import type { languages } from "@/i18n/ui";
 import ColombianFlag from "@/icons/ColombianFlag.svg";
+import { Tooltip } from "react-tooltip";
+import Download from "@/icons/Download.svg";
 
 const lang = Astro.params.lang as keyof typeof languages;
 const t = useTranslations(lang);
@@ -15,7 +17,10 @@ const t = useTranslations(lang);
   <div class="space-y-1">
     <div>
       <h1 class="text-4xl">Cristian Fernando Morales Diaz</h1>
-      <p class="text-base w-10/12" set:html={t(lang => lang.hero.description)} />
+      <p
+        class="text-base w-10/12"
+        set:html={t((lang) => lang.hero.description)}
+      />
     </div>
 
     <a
@@ -29,6 +34,40 @@ const t = useTranslations(lang);
     </a>
 
     <Networks />
+
+    <button
+      type="button"
+      class="w-fit rounded px-5 py-2 border border-green-600 bg-gradient-to-br from-emerald-300 to-green-300 dark:from-emerald-800 dark:to-green-800 dark:border-green-700  hover:scale-105 transition  cursor-pointer mt-3 flex flex-row gap-2 items-center"
+      title="Download CV"
+      data-tooltip-id="download-cv"
+    >
+      <Download class="size-6" />
+      Descargar hoja de vida
+    </button>
+
+    <Tooltip
+      client:load
+      id="download-cv"
+      className="download-buttons"
+      clickable
+      events={["click"]}
+      opacity={1}
+    >
+      <div class="flex flex-col gap-2 my-1">
+        <a
+          class="hover:underline py-0.5"
+          href="/harvard-cv.pdf"
+          target="_blank"
+        >
+          Descargar CV Harvard</a
+        >
+        <a
+          class="hover:underline py-0.5"
+          href="/web-cv.pdf"
+          target="_blank">Descargar Web CV</a
+        >
+      </div>
+    </Tooltip>
   </div>
 
   <div
@@ -38,7 +77,7 @@ const t = useTranslations(lang);
       <img
         class="size-full object-cover"
         src="/images/foto.jpeg"
-        alt={t(lang => lang.hero.imageAlt)}
+        alt={t((lang) => lang.hero.imageAlt)}
       />
     </picture>
   </div>
