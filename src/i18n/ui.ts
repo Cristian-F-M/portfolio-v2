@@ -116,7 +116,12 @@ export const ui = {
 					mainImageAlt: 'Imagen de el proyecto Buscamnias',
 					description:
 						'Juego clásico de buscaminas desarrollado con HTML, CSS y JavaScript, permitiendo elegir el tamaño del tablero y guardando la preferencias.'
-				}
+				},
+        wordle: {
+          name: 'wordle',
+          description: "Juego para adivinar la palabra con varios intentos dandole al usuario feedback con colores de los aciertos de cada letra.",
+          mainImageAlt: 'Imagen del proyecto wordle'
+        }
 			}
 		},
     skills: {
@@ -230,7 +235,12 @@ export const ui = {
 					mainImageAlt: 'Image of the Minesweeper project',
 					description:
 						'Classic Minesweeper game developed with HTML, CSS, and JavaScript, allowing board size selection and preference saving.'
-				}
+				},
+        wordle: {
+          name: 'wordle',
+          description: "A word-guessing game with several attempts, giving the user color-coded feedback on each letter correctly guessed.",
+          mainImageAlt: 'Image from the Wordle project'
+        }
 			}
 		},
     skills: {
