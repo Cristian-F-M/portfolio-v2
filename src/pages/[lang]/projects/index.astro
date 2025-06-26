@@ -4,6 +4,7 @@ import { PROJECTS } from "@/constants/Projects";
 import Layout from "@/layouts/Layout.astro";
 import { useTranslations } from "@/i18n/utils";
 import ProjectCard from "@/components/ProjectCard.astro";
+import ArrowLeft from "@/icons/ArrowLeft.svg";
 
 export function getStaticPaths() {
   return Object.entries(languages).map(([key, _]) => {
@@ -19,6 +20,14 @@ const t = useTranslations(lang);
   title={t((lang) => lang.projects.page.title)}
   description={t((lang) => lang.projects.page.description)}
 >
+  <div class="my-2 mx-3 flex flex-row items-center justify-between">
+  <a href="/" class="flex flex-row gap-1 items-center bg-gray-50 hover:scale-110 active:scale-95 transition px-3 py-2 rounded text-gray-600 shadow dark:shadow-gray-200/40 dark:bg-slate-600 dark:text-gray-50">
+      <ArrowLeft class="size-6" />
+      Inicio
+    </a>
+    <span class="text-gray-600 dark:text-gray-400">{PROJECTS.length} proyectos</span>
+  </div>
+
   <header class="w-fit mx-auto max-w-[1200px] mt-10">
     <h1
       class="text-center text-5xl md:text-6xl py-2 font-bold bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 dark:from-slate-100 dark:via-blue-100 dark:to-slate-100 bg-clip-text text-transparent"
