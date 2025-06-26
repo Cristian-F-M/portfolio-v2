@@ -9,6 +9,7 @@ import Star from "@/icons/Star.svg";
 import Github from "@/icons/Github.svg";
 import SquareArrow from "@/icons/SquareArrow.svg";
 import Download from "@/icons/Download.svg";
+import ArrowLeft from "@/icons/ArrowLeft.svg";
 
 export function getStaticPaths() {
   return Object.entries(languages).flatMap(([key, _]) =>
@@ -231,6 +232,14 @@ const isActive =
       </div>
     </div>
   </main>
+
+  <a
+    id="go-back"
+    class="flex flex-row gap-1 items-center [&_svg]:size-5 fixed bottom-2 left-2 bg-black text-white px-3 py-1.5 text-sm rounded shadow cursor-pointer hover:scale-105 active:scale-95 transition-transform"
+  >
+    <ArrowLeft />
+    {t(lang => lang.projects.page.goBackText)}
+  </a>
 </Layout>
 
 <style>
@@ -302,4 +311,13 @@ const isActive =
   if (projectCarousel) {
     Carousel(projectCarousel, options, { Thumbs }).init();
   }
+</script>
+
+<script>
+  const $goBackAnchor = document.querySelector("#go-back") as HTMLAnchorElement;
+
+  $goBackAnchor?.addEventListener("click", (e) => {
+    const backUrl = sessionStorage.getItem("projectBackUrl") ?? "/";
+    window.location.href = backUrl;
+  });
 </script>
