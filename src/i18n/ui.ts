@@ -15,7 +15,7 @@ export const ui = {
 		},
 		networks: {
 			copyMessage: 'Copiado al portapapelest',
-      infoCopyMessage: 'Haz shift + clic para copiar el enlace a la red solcial'
+			infoCopyMessage: 'Haz shift + clic para copiar el enlace a la red solcial'
 		},
 		hero: {
 			description:
@@ -50,6 +50,42 @@ export const ui = {
 			}
 		},
 		projects: {
+			page: {
+				title: 'Projectos realizados por Cristian Fernando Morales Diaz',
+				description:
+					'Lista de todos los proyectos realizados por Cristian Fernando Morales Diaz',
+				mainTitle: 'Mis Proyectos',
+				paragraph:
+					'Una colección curada de proyectos que demuestran mi experiencia en desarrollo web moderno y tecnologías de vanguardia',
+				descriptionText: 'Descripción',
+				genericImageAlt:
+					'Imagen donde se muestra el projecto en funcionamiento',
+				activeText: {
+					active: 'Proyecto activo',
+					inactive: 'Proyecto inactivo'
+				},
+				apkAvailableText: {
+					available: 'Apk disponible',
+					unavailable: 'Apk no disponible'
+				},
+				dowloadApkText: 'Descargar apk',
+				codeText: 'Código',
+				stateText: 'Estado',
+				seeProject: 'Ver proyecto',
+				technologies: 'Tecnologías',
+				projectDetails: {
+					text: 'Detalles del proyecto',
+					type: 'Tipo',
+					id: 'ID',
+					state: 'Estado',
+					types: {
+						web: 'Aplicación Web',
+						app: 'App Móvil',
+						command: 'Comando en consola',
+						api: 'API'
+					}
+				}
+			},
 			sectionTitle: 'Proyectos',
 			seeMoreText: 'Ver más...',
 			cardProjectTitle: 'Haz clic para ver los detalles del projecto',
@@ -117,17 +153,18 @@ export const ui = {
 					description:
 						'Juego clásico de buscaminas desarrollado con HTML, CSS y JavaScript, permitiendo elegir el tamaño del tablero y guardando la preferencias.'
 				},
-        wordle: {
-          name: 'wordle',
-          description: "Juego para adivinar la palabra con varios intentos dandole al usuario feedback con colores de los aciertos de cada letra.",
-          mainImageAlt: 'Imagen del proyecto wordle'
-        }
+				wordle: {
+					name: 'wordle',
+					description:
+						'Juego para adivinar la palabra con varios intentos dandole al usuario feedback con colores de los aciertos de cada letra.',
+					mainImageAlt: 'Imagen del proyecto wordle'
+				}
 			}
 		},
-    skills: {
-      sectionTitle: 'Habilidades',
-      endBoardText: '🚧 Has llegado al final del board'
-    }
+		skills: {
+			sectionTitle: 'Habilidades',
+			endBoardText: '🚧 Has llegado al final del board'
+		}
 	},
 	en: {
 		index: {
@@ -137,7 +174,7 @@ export const ui = {
 		},
 		networks: {
 			copyMessage: 'Copied to clipboard',
-      infoCopyMessage: 'Shift + click to copy the link to the social network'
+			infoCopyMessage: 'Shift + click to copy the link to the social network'
 		},
 		hero: {
 			description:
@@ -178,6 +215,41 @@ export const ui = {
 			seeDemoText: 'View demo',
 			seeProjectDemoText: 'Click to see project demo',
 			seeMoreProjects: 'See More Projects',
+			page: {
+				title: 'Projects completed by Cristian Fernando Morales Diaz',
+				description:
+					'List of all projects completed by Cristian Fernando Morales Diaz',
+				mainTitle: 'My Projects',
+				paragraph:
+					'A curated collection of projects that showcase my expertise in modern web development and cutting-edge technologies',
+				descriptionText: 'Description',
+				genericImageAlt: 'Image showing the project in operation',
+				activeText: {
+					active: 'Active project',
+					inactive: 'Inactive project'
+				},
+				apkAvailableText: {
+					available: 'Apk available',
+					unavailable: 'Apk not available'
+				},
+				dowloadApkText: 'Download apk',
+				codeText: 'Code',
+				stateText: 'Status',
+				seeProject: 'View project',
+				technologies: 'Technologies',
+				projectDetails: {
+					text: 'Project details',
+					type: 'Type',
+					id: 'ID',
+					state: 'Status',
+					types: {
+						web: 'Web Application',
+						app: 'Mobile App',
+						command: 'Console Command',
+						api: 'API'
+					}
+				}
+			},
 			projects: {
 				votaciones: {
 					api: {
@@ -236,16 +308,17 @@ export const ui = {
 					description:
 						'Classic Minesweeper game developed with HTML, CSS, and JavaScript, allowing board size selection and preference saving.'
 				},
-        wordle: {
-          name: 'wordle',
-          description: "A word-guessing game with several attempts, giving the user color-coded feedback on each letter correctly guessed.",
-          mainImageAlt: 'Image from the Wordle project'
-        }
+				wordle: {
+					name: 'wordle',
+					description:
+						'A word-guessing game with several attempts, giving the user color-coded feedback on each letter correctly guessed.',
+					mainImageAlt: 'Image from the Wordle project'
+				}
 			}
 		},
-    skills: {
-      sectionTitle: 'Skills',
-      endBoardText: '🚧 You have reached the end of the board'
-    }
+		skills: {
+			sectionTitle: 'Skills',
+			endBoardText: '🚧 You have reached the end of the board'
+		}
 	}
 } as const
