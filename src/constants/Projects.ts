@@ -28,6 +28,7 @@ interface BaseProject {
 	images: ProjectImage[]
 	skills: Skill[]
 	github?: string
+	type: 'web' | 'app' | 'api' | 'command'
 }
 
 type URL = `${`${'https' | 'http'}://` | 'www.'}${string}`
@@ -55,6 +56,7 @@ export const PROJECTS: Project[] = [
 		github: 'https://github.com/Cristian-F-M/web-votaciones-v2',
 		isActive: false,
 		isAppMobile: false,
+		type: 'web',
 		images: [],
 		skills: [
 			{
@@ -94,6 +96,7 @@ export const PROJECTS: Project[] = [
 		description: 'projects.projects.votaciones.app.description',
 		isAppMobile: true,
 		thereIsApk: false,
+		type: 'app',
 		github: 'https://github.com/Cristian-F-M/app-votaciones-v2',
 		skills: [
 			{
@@ -134,6 +137,7 @@ export const PROJECTS: Project[] = [
 		description: 'projects.projects.todoCm.description',
 		images: [],
 		github: 'https://github.com/Cristian-F-M/todo-app-v2',
+		type: 'app',
 		isAppMobile: true,
 		thereIsApk: false,
 		skills: [
@@ -176,6 +180,7 @@ export const PROJECTS: Project[] = [
 		github: 'https://github.com/Cristian-F-M/touch-for-powershell',
 		isAppMobile: false,
 		isActive: false,
+		type: 'command',
 		mainImage: {
 			alt: 'projects.projects.touchCommand.mainImageAlt',
 			path: '/images/projects/touch-command/touch-command.png'
@@ -195,6 +200,7 @@ export const PROJECTS: Project[] = [
 		description: 'projects.projects.videoPlayer.description',
 		isActive: true,
 		isAppMobile: false,
+		type: 'web',
 		github: 'https://github.com/Cristian-F-M/video-player',
 		url: 'https://video-player-lemon-six.vercel.app/',
 		mainImage: {
@@ -226,6 +232,7 @@ export const PROJECTS: Project[] = [
 		description: 'projects.projects.hojaDeVida.description',
 		isActive: true,
 		isAppMobile: false,
+		type: 'web',
 		github: 'https://github.com/Cristian-F-M/hoja-de-vida',
 		url: 'https://hoja-de-vida-theta-nine.vercel.app/',
 		mainImage: {
@@ -257,6 +264,7 @@ export const PROJECTS: Project[] = [
 		description: 'projects.projects.astronomyPictureDay.description',
 		isActive: true,
 		isAppMobile: false,
+		type: 'web',
 		url: 'https://astronomy-picture-day.netlify.app/',
 		github: 'https://github.com/Cristian-F-M/astronomy-picture-day',
 		mainImage: {
@@ -288,6 +296,7 @@ export const PROJECTS: Project[] = [
 		description: 'projects.projects.votaciones.api.description',
 		isActive: false,
 		isAppMobile: false,
+		type: 'api',
 		mainImage: {
 			alt: 'projects.projects.votaciones.api.mainImageAlt',
 			path: '/images/projects/votaciones/api/api.png'
@@ -339,6 +348,7 @@ export const PROJECTS: Project[] = [
 		description: 'projects.projects.buscaminas.description',
 		isActive: true,
 		isAppMobile: false,
+		type: 'web',
 		url: 'https://buscaminas-rho.vercel.app/',
 		github: 'https://github.com/Cristian-F-M/buscaminas',
 		mainImage: {
