@@ -35,10 +35,9 @@ type URL = `${`${'https' | 'http'}://` | 'www.'}${string}`
 
 export type Project = BaseProject &
 	(
-		| {
+		| ({
 				isAppMobile: true
-				thereIsApk: boolean
-		  }
+		  } & ({ thereIsApk: false } | { thereIsApk: true; apkPath: string }))
 		| ({ isAppMobile: false } & (
 				| { isActive: true; url: URL }
 				| { isActive: false }
