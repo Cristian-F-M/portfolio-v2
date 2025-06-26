@@ -1,0 +1,305 @@
+---
+import { PROJECTS, getProjectById } from "@/constants/Projects";
+import { languages, ui } from "@/i18n/ui";
+import { getValueByPath, useTranslations } from "@/i18n/utils";
+import Layout from "@/layouts/Layout.astro";
+import Mobile from "@/icons/Mobile.svg";
+import World from "@/icons/World.svg";
+import Star from "@/icons/Star.svg";
+import Github from "@/icons/Github.svg";
+import SquareArrow from "@/icons/SquareArrow.svg";
+import Download from "@/icons/Download.svg";
+
+export function getStaticPaths() {
+  return Object.entries(languages).flatMap(([key, _]) =>
+    PROJECTS.map(({ id }) => {
+      return { params: { lang: key, id } };
+    }),
+  );
+}
+const { id: projectId } = Astro.params;
+
+const project = getProjectById(projectId);
+if (!project) return Astro.redirect("/404");
+
+const lang = Astro.params.lang as keyof typeof languages;
+const t = useTranslations(lang);
+const { origin } = Astro.url;
+
+const {
+  id,
+  name,
+  isAppMobile,
+  github,
+  description,
+  mainImage,
+  images,
+  skills,
+  type,
+} = project;
+
+const isActive =
+  (!isAppMobile && project.isActive) || (isAppMobile && project.thereIsApk);
+---
+
+<Layout
+  title={`Proyecto ${getValueByPath(ui[lang], name)}`}
+  description={getValueByPath(ui[lang], description)}
+>
+  <header
+    class="flex gap-2 items-center justify-between px-4 py-4 bg-white/50 backdrop-blur-3xl shadow dark:bg-emerald-800/50"
+  >
+    <div class="flex flex-row gap-1 items-center text-2xl">
+      {isAppMobile && <Mobile class="size-8" />}
+      {!isAppMobile && <World class="size-7" />}
+      <h1 class="flex gap-1 items-center">
+        {getValueByPath(ui[lang], name)}
+      </h1>
+      <Star class="text-yellow-400 !size-5" fill="oklch(85.2% 0.199 91.936)" />
+    </div>
+    <div class="project-buttons flex flex-row gap-4">
+      {
+        github && (
+          <button
+            class="border border-gray-400 hover:scale-105 transition-transform active:scale-95 "
+            data-url={github}
+          >
+            <Github />
+            {t((lang) => lang.projects.page.codeText)}
+          </button>
+        )
+      }
+      {
+        !isAppMobile && project.isActive && (
+          <button
+            class="bg-black text-white text-sm hover:scale-105 active:scale-95 transition-transform"
+            data-url={project.url}
+          >
+            <SquareArrow />
+            {t((lang) => lang.projects.seeDemoText)}
+          </button>
+        )
+      }
+      {
+        isAppMobile && project.thereIsApk && "apkPath" in project && (
+          <a
+            class="flex flex-row gap-1 items-center [&_svg]:size-5 bg-black text-white rounded hover:scale-105 active:scale-95 transition-transform text-sm px-3 py-1 font-mono dark:bg-green-300/80 dark:text-gray-950"
+            target="_blank"
+            download
+            href={project.apkPath}
+          >
+            <Download />
+            {t((lang) => lang.projects.page.dowloadApkText)}
+          </a>
+        )
+      }
+    </div>
+  </header>
+
+  <main id="main" class="flex flex-row gap-6 justify-center mt-6 px-6">
+    <div class="w-3/5 h-[420px]">
+      <div class="gallery f-carousel size-full" id="project-carousel">
+        <div
+          data-thumb-src={mainImage.path}
+          class="f-carousel__slide rounded overflow-hidden"
+          data-fancybox="gallery"
+          data-src={mainImage.path}
+          data-caption={getValueByPath(ui[lang], project.mainImage.alt)}
+        >
+          <img
+            class="image size-full aspect-square object-contain"
+            src={mainImage.path}
+            style={`view-transition-name: main-image-${id};`}
+            alt={getValueByPath(ui[lang], project.mainImage.alt)}
+          />
+        </div>
+        {
+          images.map((i) => (
+            <div
+              class="f-carousel__slide rounded overflow-hidden"
+              data-fancybox="gallery"
+              data-thumb-src={i.path}
+              data-src={i.path}
+              data-caption={getValueByPath(ui[lang], i.alt)}
+            >
+              <img
+                class="size-full aspect-square object-contain"
+                src={i.path}
+                alt={getValueByPath(ui[lang], i.alt)}
+              />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+    <div class="w-2/5 flex flex-col gap-4">
+      <div class="">
+        <h2 class="text-2xl font-medium">
+          {t((lang) => lang.projects.page.descriptionText)}
+        </h2>
+        <p class="dark:text-gray-400">
+          {getValueByPath(ui[lang], description)}
+        </p>
+      </div>
+      <div>
+        <h2 class="text-2xl font-medium">
+          {t((lang) => lang.projects.page.stateText)}
+        </h2>
+        <div
+          class={`px-3 py-2 rounded w-fit flex flex-row items-center gap-1 mt-1 text-sm shadow ${isActive ? "bg-emerald-600/20 dark:bg-emerald-500/30" : "bg-red-500/30 dark:bg-red-500/40"}`}
+        >
+          <span
+            class={`text-5xl leading-0  ${isActive ? "text-green-600 dark:text-green-400" : "text-red-700 dark:text-red-600"}`}
+            >•</span
+          >
+          <span class="font-mono"
+            >{
+              t(
+                (lang) =>
+                  lang.projects.page.activeText[
+                    isActive ? "active" : "inactive"
+                  ],
+              )
+            }</span
+          >
+        </div>
+      </div>
+      <div>
+        <h2 class="text-2xl font-medium">
+          {t((lang) => lang.projects.page.technologies)}
+        </h2>
+        <div class="flex flex-row gap-2 flex-wrap">
+          {
+            skills.map((s) => (
+              <span class="bg-green-300/80 px-3 py-1.5 shadow rounded-full text-sm font-mono cursor-cell hover:bg-green-700/30 transition-colors dark:bg-green-200/40 dark:hover:bg-green-300/60 dark:text-gray-200">
+                {s.text}
+              </span>
+            ))
+          }
+        </div>
+      </div>
+      <div
+        class="shadow px-4 py-3 bg-emerald-700/30 backdrop-blur rounded w-9/12"
+      >
+        <h3 class="text-xl">
+          {t((lang) => lang.projects.page.projectDetails.text)}
+        </h3>
+        <div class="flex flex-col gap-1">
+          <span
+            class="flex flex-row justify-between text-sm text-gray-800 dark:text-gray-400"
+          >
+            {t((lang) => lang.projects.page.projectDetails.type)}
+            <span class="text-black dark:text-gray-200"
+              >{
+                t((lang) => lang.projects.page.projectDetails.types[type])
+              }</span
+            >
+          </span>
+          <span
+            class="flex flex-row justify-between text-sm text-gray-800 dark:text-gray-400"
+          >
+            {t((lang) => lang.projects.page.projectDetails.id)}
+            <span class="text-black dark:text-gray-200">{id}</span>
+          </span>
+          <span
+            class="flex flex-row justify-between text-sm text-gray-800 dark:text-gray-400"
+          >
+            {t((lang) => lang.projects.page.projectDetails.state)}
+            <span class="text-black dark:text-gray-200"
+              >{
+                !isAppMobile &&
+                  t(
+                    (lang) =>
+                      lang.projects.page.activeText[
+                        isActive ? "active" : "inactive"
+                      ],
+                  )
+              }
+
+              {
+                isAppMobile &&
+                  t(
+                    (lang) =>
+                      lang.projects.page.apkAvailableText[
+                        project.thereIsApk ? "available" : "unavailable"
+                      ],
+                  )
+              }
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .project-buttons {
+    button {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+</style>
+
+<style>
+  .pswp--img {
+    object-fit: contain;
+  }
+</style>
+
+<script>
+  const buttons = document.querySelectorAll(".project-buttons button");
+
+  buttons.forEach((b) => {
+    b.addEventListener("click", (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      const target = e.target as HTMLButtonElement;
+      const { url, target: urlTarget } = target.dataset;
+      window.open(url, urlTarget ?? "_blank");
+    });
+  });
+</script>
+
+<script>
+  import { Fancybox, type FancyboxOptions } from "@fancyapps/ui/dist/fancybox";
+
+  const options: Partial<FancyboxOptions> = {};
+
+  Fancybox.bind("[data-fancybox='gallery']", options);
+</script>
+
+<script>
+  import { Carousel, type CarouselOptions } from "@fancyapps/ui/dist/carousel/";
+  import { Thumbs } from "@fancyapps/ui/dist/carousel/carousel.thumbs.js";
+  import "@fancyapps/ui/dist/carousel/carousel.dots.css";
+  import "@fancyapps/ui/dist/fancybox/fancybox.css";
+  import "@fancyapps/ui/dist/carousel/carousel.css";
+  import "@fancyapps/ui/dist/carousel/carousel.thumbs.css";
+
+  const projectCarousel = document.querySelector(
+    "#project-carousel",
+  ) as HTMLDivElement;
+  const options: Partial<CarouselOptions> = {
+    transition: "tween",
+    Thumbs: {
+      type: "modern",
+    },
+  };
+
+  if (projectCarousel) {
+    Carousel(projectCarousel, options, { Thumbs }).init();
+  }
+</script>
