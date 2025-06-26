@@ -134,11 +134,32 @@ export const PROJECTS: Project[] = [
 			path: '/images/projects/todo-cm/todo-cm.jpg'
 		},
 		description: 'projects.projects.todoCm.description',
-		images: [],
+		images: [
+			{
+				alt: 'projects.page.genericImageAlt',
+				path: '/images/projects/todo-cm/todo-cm-1.jpg'
+			},
+			{
+				alt: 'projects.page.genericImageAlt',
+
+				path: '/images/projects/todo-cm/todo-cm-2.jpg'
+			},
+			{
+				alt: 'projects.page.genericImageAlt',
+
+				path: '/images/projects/todo-cm/todo-cm-2.jpg'
+			},
+			{
+				alt: 'projects.page.genericImageAlt',
+
+				path: '/images/projects/todo-cm/todo-cm-4.jpg'
+			}
+		],
 		github: 'https://github.com/Cristian-F-M/todo-app-v2',
 		type: 'app',
 		isAppMobile: true,
-		thereIsApk: false,
+		thereIsApk: true,
+		apkPath: '/apks/todo-cm.apk',
 		skills: [
 			{
 				id: 'react',
