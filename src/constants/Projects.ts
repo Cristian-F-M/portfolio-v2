@@ -372,44 +372,44 @@ export const PROJECTS: Project[] = [
 				text: 'JavaScript'
 			}
 		]
-	}, 
-  {
-    id: 'wordle',
-    description: "projects.projects.wordle.description",
-    name: "projects.projects.wordle.name",
-    isActive: true, 
-    isAppMobile: false,
-    url: "https://wordle-alpha-indol.vercel.app/",
-    github: "https://github.com/Cristian-F-M/wordle",
-    mainImage: {
-      path: '/images/projects/wordle/wordle.png',
-      alt: 'projects.projects.wordle.mainImageAlt'
-    },
-    images: [],
-    skills: [
-      {
-        id: 'html',
-        icon: 'html',
-        text: 'HTML'
-      },
-      {
-        id: 'css',
-        icon: 'css',
-        text: 'CSS'
-      },
-      {
-        id: 'javascript',
-        icon: 'javascript',
-        text: 'JavaScript'
-      },
-      {
-        id: 'tailwindcss',
-        icon: 'tailwindcss',
-        text: 'Tailwindcss'
-      }
-    ]
-    
-  }
+	},
+	{
+		id: 'wordle',
+		description: 'projects.projects.wordle.description',
+		name: 'projects.projects.wordle.name',
+		isActive: true,
+		isAppMobile: false,
+		type: 'web',
+		url: 'https://wordle-alpha-indol.vercel.app/',
+		github: 'https://github.com/Cristian-F-M/wordle',
+		mainImage: {
+			path: '/images/projects/wordle/wordle.png',
+			alt: 'projects.projects.wordle.mainImageAlt'
+		},
+		images: [],
+		skills: [
+			{
+				id: 'html',
+				icon: 'html',
+				text: 'HTML'
+			},
+			{
+				id: 'css',
+				icon: 'css',
+				text: 'CSS'
+			},
+			{
+				id: 'javascript',
+				icon: 'javascript',
+				text: 'JavaScript'
+			},
+			{
+				id: 'tailwindcss',
+				icon: 'tailwindcss',
+				text: 'Tailwindcss'
+			}
+		]
+	}
 ]
 
 export function getProjectById(id: string) {
