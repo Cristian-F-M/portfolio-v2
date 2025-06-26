@@ -6,6 +6,10 @@
 	--font-raleway: "Raleway Variable";
 }
 
+@view-transition {
+	navigation: auto;
+}
+
 .animate-shine-effect {
 	opacity: 1;
 	animation: shine-effect 1.5s ease;
