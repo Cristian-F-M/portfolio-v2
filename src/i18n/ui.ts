@@ -84,7 +84,8 @@ export const ui = {
 						command: 'Comando en consola',
 						api: 'API'
 					}
-				}
+				},
+				goBackText: 'Volver'
 			},
 			sectionTitle: 'Proyectos',
 			seeMoreText: 'Ver más...',
@@ -248,7 +249,8 @@ export const ui = {
 						command: 'Console Command',
 						api: 'API'
 					}
-				}
+				},
+				goBackText: 'Go back'
 			},
 			projects: {
 				votaciones: {
