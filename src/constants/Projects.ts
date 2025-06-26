@@ -28,7 +28,6 @@ interface BaseProject {
 	images: ProjectImage[]
 	skills: Skill[]
 	github?: string
-  highlighted?: boolean
 }
 
 type URL = `${`${'https' | 'http'}://` | 'www.'}${string}`
@@ -95,7 +94,6 @@ export const PROJECTS: Project[] = [
 		description: 'projects.projects.votaciones.app.description',
 		isAppMobile: true,
 		thereIsApk: false,
-		highlighted: true,
 		github: 'https://github.com/Cristian-F-M/app-votaciones-v2',
 		skills: [
 			{
@@ -138,7 +136,6 @@ export const PROJECTS: Project[] = [
 		github: 'https://github.com/Cristian-F-M/todo-app-v2',
 		isAppMobile: true,
 		thereIsApk: false,
-    highlighted: true,
 		skills: [
 			{
 				id: 'react',
@@ -260,7 +257,6 @@ export const PROJECTS: Project[] = [
 		description: 'projects.projects.astronomyPictureDay.description',
 		isActive: true,
 		isAppMobile: false,
-		highlighted: true,
 		url: 'https://astronomy-picture-day.netlify.app/',
 		github: 'https://github.com/Cristian-F-M/astronomy-picture-day',
 		mainImage: {
@@ -292,7 +288,6 @@ export const PROJECTS: Project[] = [
 		description: 'projects.projects.votaciones.api.description',
 		isActive: false,
 		isAppMobile: false,
-		highlighted: true,
 		mainImage: {
 			alt: 'projects.projects.votaciones.api.mainImageAlt',
 			path: '/images/projects/votaciones/api/api.png'
