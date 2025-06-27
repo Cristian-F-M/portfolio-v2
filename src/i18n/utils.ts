@@ -15,7 +15,7 @@ export function useTranslations(lang: keyof typeof ui) {
 		const defaultLangClone = structuredClone(ui[defaultLang])
 
 		try {
-			return key(currentLang)
+			return key(currentLang) ?? key(defaultLangClone)
 		} catch {
 			return key(defaultLangClone)
 		}
