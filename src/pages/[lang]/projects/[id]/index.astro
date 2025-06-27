@@ -11,6 +11,7 @@ import SquareArrow from "@/icons/SquareArrow.svg";
 import Download from "@/icons/Download.svg";
 import ArrowLeft from "@/icons/ArrowLeft.svg";
 import LangChanger from "@/components/LangChanger.astro";
+import ThemeToggle from "@/components/ThemeToggle.astro";
 
 export function getStaticPaths() {
   return Object.entries(languages).flatMap(([key, _]) =>
@@ -97,7 +98,11 @@ const isActive =
           )
         }
       </div>
-      <div><LangChanger /></div>
+      
+      <div class="flex flex-row gap-2 items-center ">
+        <ThemeToggle />
+        <LangChanger />
+      </div>
     </div>
   </header>
 

@@ -9,6 +9,7 @@ import Skills from "@/sections/Skills.astro";
 import Layout from "@/layouts/Layout.astro";
 import { useTranslations } from "@/i18n/utils";
 import LangChanger from "@/components/LangChanger.astro";
+import ThemeToggle from "@/components/ThemeToggle.astro";
 
 export function getStaticPaths() {
   return Object.entries(languages).map(([key, _]) => {
@@ -25,7 +26,8 @@ const t = useTranslations(lang);
   description={t((lang) => lang.index.description)}
 >
   <main class="w-full max-w-[800px] mx-auto py-4">
-    <div class="justify-self-end">
+    <div class="justify-self-end flex gap-3">
+      <ThemeToggle />
       <LangChanger />
     </div>
     <HeroHeader />
