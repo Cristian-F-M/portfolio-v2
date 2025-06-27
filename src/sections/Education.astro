@@ -66,7 +66,7 @@ const EDUCATIONS: Education[] = [
             <h4 class="text-lg font-semibold text-gray-800 dark:text-gray-300 flex flex-row gap-2 items-center">
               {certificate}
                 {verificate && (
-                    <span class=" cursor-poiner" title="Certificado">
+                    <span class=" cursor-poiner" title={t(lang => lang.education.certificateText)}>
                       <Verificate class="size-4.5 text-blue-800 dark:text-blue-400 cursor-pointer" />
                     </span>
                   )}
