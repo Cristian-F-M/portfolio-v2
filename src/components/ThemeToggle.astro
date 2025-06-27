@@ -1,0 +1,103 @@
+---
+import Moon from "@/icons/Moon.svg";
+import Sun from "@/icons/Sun.svg";
+---
+
+<div
+  id="theme-toggle"
+  class="flex items-center justify-center relative size-8 overflow-hidden rounded"
+  data-theme=""
+>
+  <div
+    class="theme bg-green-200 shadow dark:text-black border border-green-500/30"
+    id="light"
+  >
+    <Sun />
+  </div>
+  <div
+    class="theme bg-[#2d2e30] text-white dark:bg-[#054f2f] border border-gray-600"
+    id="dark"
+  >
+    <Moon />
+  </div>
+</div>
+
+<style>
+  @reference 'tailwindcss';
+
+  #theme-toggle {
+  }
+
+  #theme-toggle .theme {
+    @apply hidden p-1 rounded cursor-pointer [&_svg]:size-5 size-8 flex-row items-center justify-center absolute translate-y-2;
+  }
+
+  #theme-toggle[data-theme="dark"] #dark,
+  #theme-toggle[data-theme="light"] #light {
+    @apply flex z-50 translate-y-0;
+
+    @starting-style {
+      @apply translate-y-2;
+    }
+  }
+
+  #theme-toggle .theme {
+    transition: all 0.3s allow-discrete;
+  }
+</style>
+
+<script>
+  const themeToggle = document.querySelector("#theme-toggle");
+
+  themeToggle?.addEventListener("click", (event) => {
+    const target = event.target as HTMLElement;
+    const togler = target.closest("#theme-toggle") as HTMLDivElement;
+
+    const currentTheme = togler.dataset.theme;
+
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+    togler.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
+
+    document.documentElement.classList.toggle("dark");
+    document.documentElement.style.colorScheme =
+      document.documentElement.classList.contains("dark") ? "dark" : "light";
+  });
+</script>
+
+<script is:inline>
+  const themeToggle = document.querySelector("#theme-toggle");
+  const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
+  let remove = null;
+
+  const getThemePreference = () => {
+    if (typeof localStorage !== "undefined") {
+      return localStorage.getItem("theme") ?? "light";
+    }
+
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  };
+
+  const updateTheme = () => {
+    if (remove != null) {
+      remove();
+    }
+    matchMedia.addEventListener("change", updateTheme);
+    remove = () => {
+      matchMedia.removeEventListener("change", updateTheme);
+    };
+  };
+
+  const themePreference = getThemePreference();
+  const isDark =
+    themePreference === "dark" ||
+    (themePreference === "system" && matchMedia.matches);
+
+  document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+
+  themeToggle.setAttribute("data-theme", themePreference);
+  updateTheme();
+</script>
