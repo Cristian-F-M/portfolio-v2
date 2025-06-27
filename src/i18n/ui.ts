@@ -85,7 +85,8 @@ export const ui = {
 						api: 'API'
 					}
 				},
-				goBackText: 'Volver'
+				goBackText: 'Volver',
+        projectsText: 'Proyectos'
 			},
 			sectionTitle: 'Proyectos',
 			seeMoreText: 'Ver más...',
@@ -250,7 +251,8 @@ export const ui = {
 						api: 'API'
 					}
 				},
-				goBackText: 'Go back'
+				goBackText: 'Go back',
+        projectsText: 'Projects'
 			},
 			projects: {
 				votaciones: {
