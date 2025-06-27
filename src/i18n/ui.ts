@@ -20,7 +20,12 @@ export const ui = {
 		hero: {
 			description:
 				'Tecnologo en <Strong>analisis y desarrollo de software</Strong> enfocado en el desarrollo web.',
-			imageAlt: 'Foto de Cristian Fernando Morales Diaz'
+			imageAlt: 'Foto de Cristian Fernando Morales Diaz',
+			downloadCV: {
+				button: 'Descargar hoja de vida',
+				harvard: 'Descargar Harvard CV',
+				clasic: 'Descargar Clasica CV'
+			}
 		},
 		about: {
 			sectionTitle: 'Sobre mí',
@@ -37,6 +42,7 @@ export const ui = {
 		},
 		education: {
 			sectionTitle: 'Educación',
+			certificateText: 'Certificado',
 			studies: {
 				'sena-adso': {
 					certificateName: 'Tecnología en Analisís y Desarrollo de Software'
@@ -86,7 +92,9 @@ export const ui = {
 					}
 				},
 				goBackText: 'Volver',
-        projectsText: 'Proyectos'
+				projectsText: 'Proyectos',
+				seeGithubText:
+					'Haz clic para ver el repositiorio de github de el proyecto'
 			},
 			sectionTitle: 'Proyectos',
 			seeMoreText: 'Ver más...',
@@ -181,7 +189,12 @@ export const ui = {
 		hero: {
 			description:
 				'Technologist in <strong>software analysis and development</strong> focused on web development.',
-			imageAlt: 'Photo of Cristian Fernando Morales Diaz'
+			imageAlt: 'Photo of Cristian Fernando Morales Diaz',
+			downloadCV: {
+				button: 'Download resume',
+				harvard: 'Download Harvard',
+				clasic: 'Download Clasic'
+			}
 		},
 		about: {
 			sectionTitle: 'About Me',
@@ -198,6 +211,7 @@ export const ui = {
 		},
 		education: {
 			sectionTitle: 'Education',
+			certificateText: 'Certificated',
 			studies: {
 				'sena-adso': {
 					certificateName: 'Technology in Software Analysis and Development'
@@ -252,7 +266,8 @@ export const ui = {
 					}
 				},
 				goBackText: 'Go back',
-        projectsText: 'Projects'
+				projectsText: 'Projects',
+				seeGithubText: "Click to view the project's GitHub repository"
 			},
 			projects: {
 				votaciones: {
