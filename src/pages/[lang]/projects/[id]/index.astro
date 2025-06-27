@@ -10,6 +10,7 @@ import Github from "@/icons/Github.svg";
 import SquareArrow from "@/icons/SquareArrow.svg";
 import Download from "@/icons/Download.svg";
 import ArrowLeft from "@/icons/ArrowLeft.svg";
+import LangChanger from "@/components/LangChanger.astro";
 
 export function getStaticPaths() {
   return Object.entries(languages).flatMap(([key, _]) =>
@@ -58,42 +59,45 @@ const isActive =
       </h1>
       <Star class="text-yellow-400 !size-5" fill="oklch(85.2% 0.199 91.936)" />
     </div>
-    <div class="project-buttons flex flex-row gap-4">
-      {
-        github && (
-          <button
-            class="border border-gray-400 hover:scale-105 transition-transform active:scale-95 "
-            data-url={github}
-          >
-            <Github />
-            {t((lang) => lang.projects.page.codeText)}
-          </button>
-        )
-      }
-      {
-        !isAppMobile && project.isActive && (
-          <button
-            class="bg-black text-white text-sm hover:scale-105 active:scale-95 transition-transform"
-            data-url={project.url}
-          >
-            <SquareArrow />
-            {t((lang) => lang.projects.seeDemoText)}
-          </button>
-        )
-      }
-      {
-        isAppMobile && project.thereIsApk && "apkPath" in project && (
-          <a
-            class="flex flex-row gap-1 items-center [&_svg]:size-5 bg-black text-white rounded hover:scale-105 active:scale-95 transition-transform text-sm px-3 py-1 font-mono dark:bg-green-300/80 dark:text-gray-950"
-            target="_blank"
-            download
-            href={project.apkPath}
-          >
-            <Download />
-            {t((lang) => lang.projects.page.dowloadApkText)}
-          </a>
-        )
-      }
+    <div class="flex flex-row gap-8 items-center">
+      <div class="project-buttons flex flex-row gap-4">
+        {
+          github && (
+            <button
+              class="border border-gray-400 hover:scale-105 transition-transform active:scale-95 "
+              data-url={github}
+            >
+              <Github />
+              {t((lang) => lang.projects.page.codeText)}
+            </button>
+          )
+        }
+        {
+          !isAppMobile && project.isActive && (
+            <button
+              class="bg-black text-white text-sm hover:scale-105 active:scale-95 transition-transform"
+              data-url={project.url}
+            >
+              <SquareArrow />
+              {t((lang) => lang.projects.seeDemoText)}
+            </button>
+          )
+        }
+        {
+          isAppMobile && project.thereIsApk && "apkPath" in project && (
+            <a
+              class="flex flex-row gap-1 items-center [&_svg]:size-5 bg-black text-white rounded hover:scale-105 active:scale-95 transition-transform text-sm px-3 py-1 font-mono dark:bg-green-300/80 dark:text-gray-950"
+              target="_blank"
+              download
+              href={project.apkPath}
+            >
+              <Download />
+              {t((lang) => lang.projects.page.dowloadApkText)}
+            </a>
+          )
+        }
+      </div>
+      <div><LangChanger /></div>
     </div>
   </header>
 
@@ -238,7 +242,7 @@ const isActive =
     class="flex flex-row gap-1 items-center [&_svg]:size-5 fixed bottom-2 left-2 bg-black text-white px-3 py-1.5 text-sm rounded shadow cursor-pointer hover:scale-105 active:scale-95 transition-transform"
   >
     <ArrowLeft />
-    {t(lang => lang.projects.page.goBackText)}
+    {t((lang) => lang.projects.page.goBackText)}
   </a>
 </Layout>
 
