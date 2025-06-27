@@ -1,0 +1,122 @@
+---
+import type { languages as languagesType } from "@/i18n/ui";
+import { languages } from "@/i18n/ui";
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+const lang = Astro.params.lang as keyof typeof languagesType;
+const langugagesKeys = Object.keys(languages);
+---
+
+<div class="w-8">
+  <div
+    id="dropdown"
+    class="dropdown size-8 overflow-hidden flex flex-col gap-2 absolute"
+  >
+    <div
+      id="selected"
+      class="selected bg-[#7deab7] shadow p-2 size-full flex items-center justify-center rounded cursor-pointer dark:bg-emerald-600"
+      data-id-selected={lang}
+    >
+      {
+        langugagesKeys.map((l) => (
+          <div class="" id={`selected-${l}`}>
+            <svg class="size-4">
+              <use href={`/icons/langs.svg#${l}`} />
+            </svg>
+          </div>
+        ))
+      }
+    </div>
+    <div
+      class="options bg-[#7deab7] rounded overflow-hidden w-full flex flex-col items-center dark:bg-emerald-600"
+    >
+      {
+        langugagesKeys.map((l) => (
+          <div
+            class="option flex items-center justify-center w-full py-1 transition-colors hover:bg-[#71cfa3] cursor-pointer"
+            id={l}
+          >
+            <svg class="size-4">
+              <use href={`/icons/langs.svg#${l}`} />
+            </svg>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  .dropdown {
+    transition: height 0.2s;
+    interpolate-size: allow-keywords;
+  }
+
+  .dropdown.show {
+    height: auto;
+  }
+
+  .dropdown .selected div {
+    display: none;
+    transition: all 0s ease allow-discrete;
+  }
+</style>
+
+<style
+  set:html={langugagesKeys
+    .map(
+      (l) => `
+    .selected[data-id-selected="${l}"] #selected-${l} {
+      transition: all 0.3s allow-discrete, opacity 0.2s, transform 0.3s;
+      display: flex !important;
+      opacity: 1;
+      translate: 0 0;
+
+
+      @starting-style {
+        opacity: 0;
+        translate: 0 10px;
+      }
+    }
+  `,
+    )
+    .join("\n")}
+></style>
+
+<script>
+  const dropdown = document.querySelector("#dropdown") as HTMLDivElement;
+  const selectedOption = dropdown.querySelector("#selected") as HTMLDivElement;
+  const options = dropdown.querySelectorAll(
+    ".option",
+  ) as NodeListOf<HTMLDivElement>;
+
+  options.forEach((op) => {
+    op.addEventListener("click", (event) => {
+      const target = event.target as HTMLDivElement;
+      const option = target.closest(".option") as HTMLDivElement;
+      const currentSelected = selectedOption.getAttribute("data-id-selected");
+
+      const id = option?.getAttribute("id");
+      if (!id) return;
+
+      selectedOption?.setAttribute("data-id-selected", id);
+      dropdown.classList.remove("show");
+
+      if (currentSelected === id) return;
+      const nuevaRuta = location.pathname.replace(
+        /^\/[a-z]{2}(?=\/|$)/,
+        `/${id}`,
+      );
+      location.href = nuevaRuta;
+    });
+  });
+
+  selectedOption?.addEventListener("click", () => {
+    dropdown.classList.toggle("show");
+  });
+
+  document.addEventListener("click", (e) => {
+    const target = e.target as HTMLElement;
+    if (!target.closest(".dropdown")) dropdown.classList.remove("show");
+  });
+</script>
