@@ -42,7 +42,7 @@ const t = useTranslations(lang);
       data-tooltip-id="download-cv"
     >
       <Download class="size-6" />
-      Descargar hoja de vida
+      {t(lang => lang.hero.downloadCV.button)}
     </button>
 
     <Tooltip
@@ -59,12 +59,12 @@ const t = useTranslations(lang);
           href="/harvard-cv.pdf"
           target="_blank"
         >
-          Descargar CV Harvard</a
+          {t(lang => lang.hero.downloadCV.harvard)}</a
         >
         <a
           class="hover:underline py-0.5"
           href="/web-cv.pdf"
-          target="_blank">Descargar Web CV</a
+          target="_blank">{t(lang => lang.hero.downloadCV.clasic)}</a
         >
       </div>
     </Tooltip>
