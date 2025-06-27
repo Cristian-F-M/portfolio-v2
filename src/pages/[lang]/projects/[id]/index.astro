@@ -5,7 +5,6 @@ import { getValueByPath, useTranslations } from "@/i18n/utils";
 import Layout from "@/layouts/Layout.astro";
 import Mobile from "@/icons/Mobile.svg";
 import World from "@/icons/World.svg";
-import Star from "@/icons/Star.svg";
 import Github from "@/icons/Github.svg";
 import SquareArrow from "@/icons/SquareArrow.svg";
 import Download from "@/icons/Download.svg";
@@ -58,7 +57,6 @@ const isActive =
       <h1 class="flex gap-1 items-center">
         {getValueByPath(ui[lang], name)}
       </h1>
-      <Star class="text-yellow-400 !size-5" fill="oklch(85.2% 0.199 91.936)" />
     </div>
     <div class="flex flex-row gap-8 items-center">
       <div class="project-buttons flex flex-row gap-4">
@@ -98,8 +96,8 @@ const isActive =
           )
         }
       </div>
-      
-      <div class="flex flex-row gap-2 items-center ">
+
+      <div class="flex flex-row gap-2 items-center">
         <ThemeToggle />
         <LangChanger />
       </div>
