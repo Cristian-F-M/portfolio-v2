@@ -57,7 +57,7 @@ const t = useTranslations(lang);
               <button
                 type="button"
                 data-url={project.github}
-                title={`Haz clic para ver el repositiorio de github de el proyecto ${getValueByPath(ui[lang], project.name)}`}
+                title={`${t(lang => lang.projects.page.seeGithubText)} ${getValueByPath(ui[lang], project.name)}`}
                 class="flex items-center justify-center cursor-pointer border rounded-md size-full p-1 bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm border-slate-200/90 shadow shadow-slate-400/60 dark:border-slate-700/50 hover:bg-slate-900 hover:text-white dark:hover:bg-slate-100 dark:hover:text-slate-900 transition-all duration-300 hover:scale-105 [&_svg]:pointer-events-none"
               >
                 <Github class="size-full" />
