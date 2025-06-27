@@ -1,5 +1,7 @@
 ---
 import "@/styles/global.css";
+import "@fontsource-variable/montserrat";
+import "@fontsource-variable/raleway";
 
 interface Props {
   title: string;
@@ -32,6 +34,24 @@ const locale = Astro.currentLocale;
     <style is:global>
       :root {
         color-scheme: dark light;
+      }
+
+      html {
+        font-family:
+          "Raleway Variable",
+          "Montserrat Variable",
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          Oxygen,
+          Ubuntu,
+          Cantarell,
+          "Open Sans",
+          "Helvetica Neue",
+          sans-serif;
+        letter-spacing: -0.48px;
       }
     </style>
     <cm-toast></cm-toast>
