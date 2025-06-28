@@ -2593,7 +2593,7 @@
   </symbol>
 
 
-  <asymbol
+  <symbol
     id='en'
     xmlns='http://www.w3.org/2000/svg'
     fill='none'
@@ -2626,7 +2626,7 @@
           />
       </clipPath>
     </defs>
-  </asymbol>
+  </symbol>
 
 
 </svg>
