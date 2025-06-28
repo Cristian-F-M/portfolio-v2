@@ -33,6 +33,7 @@ export const ui = {
 		},
 		experience: {
 			sectionTitle: 'Experiencia laboral',
+			currentJobText: 'Actual',
 			jobs: {
 				wm: {
 					summary:
@@ -202,6 +203,7 @@ export const ui = {
 		},
 		experience: {
 			sectionTitle: 'Work Experience',
+			currentJobText: 'Current',
 			jobs: {
 				wm: {
 					summary:
