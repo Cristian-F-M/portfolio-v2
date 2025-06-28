@@ -19,7 +19,7 @@ export const ui = {
 		},
 		hero: {
 			description:
-				'Tecnologo en <Strong>analisis y desarrollo de software</Strong> enfocado en el desarrollo web.',
+				'Tecnologo en <Strong>análisis y desarrollo de software</Strong> enfocado en el desarrollo web.',
 			imageAlt: 'Foto de Cristian Fernando Morales Diaz',
 			downloadCV: {
 				button: 'Descargar hoja de vida',
@@ -46,7 +46,7 @@ export const ui = {
 			certificateText: 'Certificado',
 			studies: {
 				'sena-adso': {
-					certificateName: 'Tecnología en Analisís y Desarrollo de Software'
+					certificateName: 'Tecnología en Análisis y Desarrollo de Software'
 				},
 				'sena-fbpj': {
 					certificateName: 'Curso en fundamentos básicos en programación java'
