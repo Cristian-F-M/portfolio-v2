@@ -278,22 +278,22 @@ const t = useTranslations(lang);
     group.appendChild(lightningEffectClone);
     group.appendChild(iconGroup);
 
-    group.addEventListener("mouseenter", (event) => {
-      event.preventDefault();
-      if (window.soundActive) {
-        hexagonSound.volume = 0.1;
-        hexagonSound.currentTime = 0;
-        hexagonSound.play();
-      }
-
-      setTooltipPosition(event, skill);
-    });
+    group.addEventListener("mouseenter", mouseenter);
+    group.addEventListener("touchend", mouseenter);
 
     group.addEventListener("mousemove", (event) =>
       setTooltipPosition(event, skill),
     );
 
+    group.addEventListener("touchstart", (event) =>
+      setTooltipPosition(event, skill),
+    );
+
     group.addEventListener("mouseleave", () => {
+      tooltip.classList.remove("show");
+    });
+
+    group.addEventListener("touchend", () => {
       tooltip.classList.remove("show");
     });
 
@@ -305,8 +305,18 @@ const t = useTranslations(lang);
     const { left: wrapperLeft, top: wrapperTop } =
       skillsBoardWrapper.getBoundingClientRect();
 
-    const left = event.clientX - wrapperLeft;
-    const top = event.clientY - wrapperTop - toolHeight - 10;
+    let [left, top] = [0, 0];
+
+    if (event instanceof TouchEvent) {
+      const touch = event.touches[0];
+      left = touch.clientX - wrapperLeft / 2;
+      top = touch.clientY - wrapperTop - toolHeight - 60;
+    }
+
+    if (event instanceof MouseEvent) {
+      left = event.clientX - wrapperLeft;
+      top = event.clientY - wrapperTop - toolHeight - 10;
+    }
 
     tooltip.textContent = skill.name;
 
@@ -499,6 +509,17 @@ const t = useTranslations(lang);
   const skillsSection = document.querySelector("#skills");
 
   if (skillsSection) observer.observe(skillsSection);
+
+  function mouseenter(event) {
+    event.preventDefault();
+    if (window.soundActive) {
+      hexagonSound.volume = 0.1;
+      hexagonSound.currentTime = 0;
+      hexagonSound.play();
+    }
+
+    setTooltipPosition(event, skill);
+  }
 </script>
 
 <script>
@@ -526,30 +547,23 @@ const t = useTranslations(lang);
   let prevX = 0;
   let prevY = 0;
 
-  svg.addEventListener("mousedown", (event) => {
+  function mousedown(event: MouseEvent | TouchEvent) {
+    event.preventDefault();
     isDragging = true;
-    prevX = event.clientX;
-    prevY = event.clientY;
+
+    if (event instanceof TouchEvent)
+      [prevX, prevY] = [event.touches[0].clientX, event.touches[0].clientY];
+    if (event instanceof MouseEvent)
+      [prevX, prevY] = [event.clientX, event.clientY];
     svg.style.cursor = "grabbing";
-  });
+  }
 
-  svg.addEventListener("mouseup", () => {
+  function mouseup(event: MouseEvent | TouchEvent) {
     isDragging = false;
     svg.style.cursor = "grab";
-  });
+  }
 
-  svg.addEventListener("mouseleave", () => {
-    isDragging = false;
-    svg.style.cursor = "grab";
-
-    if (moveCenterTimeout) clearTimeout(moveCenterTimeout);
-    moveCenterTimeout = setTimeout(() => {
-      mainGroup.style.transition = "all 0.4s";
-      mainGroup.setAttribute("transform", `translate(${0},${0}) scale(1 1)`);
-    }, 4000);
-  });
-
-  svg.addEventListener("mousemove", (event) => {
+  function mousemove(event: MouseEvent | TouchEvent) {
     if (moveCenterTimeout) clearTimeout(moveCenterTimeout);
     moveCenterTimeout = setTimeout(() => {
       mainGroup.style.transition = "all 0.4s";
@@ -558,10 +572,22 @@ const t = useTranslations(lang);
     mainGroup.style.transition = "";
     if (!isDragging) return;
 
-    const dx = event.clientX - prevX;
-    const dy = event.clientY - prevY;
-    prevX = event.clientX;
-    prevY = event.clientY;
+    let [dx, dy] = [0, 0];
+
+    if (event instanceof TouchEvent) {
+      const touch = event.touches[0];
+      dx = touch.clientX - prevX;
+      dy = touch.clientY - prevY;
+
+      [prevX, prevY] = [touch.clientX, touch.clientY];
+    }
+
+    if (event instanceof MouseEvent) {
+      dx = event.clientX - prevX;
+      dy = event.clientY - prevY;
+      prevX = event.clientX;
+      prevY = event.clientY;
+    }
 
     const currentTransform =
       mainGroup.getAttribute("transform") || "translate(0,0) scale(1 1)";
@@ -596,5 +622,24 @@ const t = useTranslations(lang);
       "transform",
       `translate(${tx},${ty}) ${scaleMatch?.[0] ?? "scale(1 1)"}`,
     );
+  }
+
+  svg.addEventListener("mousedown", mousedown);
+  svg.addEventListener("touchstart", mousedown);
+
+  svg.addEventListener("mouseup", mouseup);
+
+  svg.addEventListener("mouseleave", () => {
+    isDragging = false;
+    svg.style.cursor = "grab";
+
+    if (moveCenterTimeout) clearTimeout(moveCenterTimeout);
+    moveCenterTimeout = setTimeout(() => {
+      mainGroup.style.transition = "all 0.4s";
+      mainGroup.setAttribute("transform", `translate(${0},${0}) scale(1 1)`);
+    }, 4000);
   });
+
+  svg.addEventListener("mousemove", mousemove);
+  svg.addEventListener("touchmove", mousemove);
 </script>

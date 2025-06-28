@@ -55,25 +55,25 @@ const EDUCATIONS: Education[] = [
 ---
 
 <Section title={t(lang => lang.education.sectionTitle)} id="education">
-  <School class="size-8 -m-2" slot={"icon"}/>
+  <School class="md:size-8 size-6 md:-m-2 -m-1" slot={"icon"}/>
   <div>
     {
       EDUCATIONS.map(({ id, instution, period, certificate, verificate }, index) => {
         const showSeparator = index !== EDUCATIONS.length - 1
 
-        return <article class="flex flex-row justify-between" id={id}>
+        return <article class="flex flex-row justify-between gap-2" id={id}>
           <div>
-            <h4 class="text-lg font-semibold text-gray-800 dark:text-gray-300 flex flex-row gap-2 items-center">
+            <h4 class="md:text-lg text-base font-semibold text-gray-800 dark:text-gray-300 flex flex-row gap-2 items-center">
               {certificate}
                 {verificate && (
-                    <span class=" cursor-poiner" title={t(lang => lang.education.certificateText)}>
-                      <Verificate class="size-4.5 text-blue-800 dark:text-blue-400 cursor-pointer" />
+                    <span class=" cursor-poiner md:block hidden" title={t(lang => lang.education.certificateText)}>
+                      <Verificate class="md:size-4.5 size-4 text-blue-800 dark:text-blue-400 cursor-pointer" />
                     </span>
                   )}
               </h4>
-            <h5 class="text-sm text-gray-700 dark:text-gray-400 -mt-1">{instution}</h5>
+            <h5 class="md:text-sm text-xs text-gray-700 dark:text-gray-400 -mt-1">{instution}</h5>
           </div>
-          <span class="text-sm text-gray-700 dark:text-gray-400">
+          <span class="md:text-sm text-xs text-gray-700 dark:text-gray-400">
             {period.start} - {period.end ? period.end : "Actualmente"}
           </span>
         </article>

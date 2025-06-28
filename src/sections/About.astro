@@ -9,6 +9,6 @@ const t = useTranslations(lang);
 ---
 
 <Section title={t(lang => lang.about.sectionTitle)} id="About">
-  <UserCode class="size-8 -m-1.5" slot={"icon"} />
-  <div set:html={t(lang => lang.about.text)} class="[&>p]:mb-[1lh] w-10/12 font-raleway"></div>
+  <UserCode class="md:size-8 size-6 -m-1.5" slot={"icon"} />
+  <div set:html={t(lang => lang.about.text)} class="[&>p]:mb-[1lh] md:w-10/12 font-raleway w-full md:text-base text-sm"></div>
 </Section>

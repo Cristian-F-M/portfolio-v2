@@ -42,20 +42,20 @@ const t = useTranslations(lang);
     >
   </div>
 
-  <header class="w-fit mx-auto max-w-[1200px] mt-10">
+  <header class="md:w-fit mx-auto md:max-w-[1200px] w-full mt-10">
     <h1
-      class="text-center text-5xl md:text-6xl py-2 font-bold bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 dark:from-slate-100 dark:via-blue-100 dark:to-slate-100 bg-clip-text text-transparent"
+      class="text-center text-3xl md:text-6xl py-2 font-bold bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 dark:from-slate-100 dark:via-blue-100 dark:to-slate-100 bg-clip-text text-transparent"
     >
       {t((lang) => lang.projects.page.mainTitle)}
     </h1>
     <p
-      class="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed text-center"
+      class="md:text-xl text-base text-slate-600 dark:text-slate-400 max-w-3xl mx-auto md:leading-relaxed leading-5 text-center"
     >
       {t((lang) => lang.projects.page.paragraph)}
     </p>
   </header>
 
-  <main class="mx-auto w-fit max-w-[1200px] py-20">
+  <main class="mx-auto w-fit max-w-[1200px] md:py-20 py-5">
     <div class="mt-6 flex gap-4 flex-wrap w-fit justify-center">
       {
         PROJECTS.map((project, index) => {

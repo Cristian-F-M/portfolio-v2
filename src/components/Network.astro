@@ -18,7 +18,7 @@ const { href, id, class: className, icon: Icon, urlCopy } = Astro.props;
   target="_blank"
   rel="noopener noreferrer"
   class={tw(
-    "border border-emerald-700/40 p-1 rounded-md bg-green-200 dark:bg-emerald-300/30 dark:border-emerald-400/40 hover:scale-110 transition group w-7 aspect-square flex items-center justify-center",
+    "border border-emerald-700/40 p-1 rounded-md bg-green-200 dark:bg-emerald-300/30 dark:border-emerald-400/40 hover:scale-110 transition group md:w-7 w-7 aspect-square flex items-center justify-center",
     className,
   )}
   title={t((lang) => lang.networks.infoCopyMessage)}
