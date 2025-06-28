@@ -37,12 +37,12 @@ const t = useTranslations(lang);
 
     <button
       type="button"
-      class="w-fit rounded px-5 py-2 border border-green-600 bg-gradient-to-br from-emerald-300 to-green-300 dark:from-emerald-800 dark:to-green-800 dark:border-green-700  hover:scale-105 transition  cursor-pointer mt-3 flex flex-row gap-2 items-center md:text-base text-sm"
+      class="w-fit rounded px-5 py-2 border border-green-600 bg-gradient-to-br from-emerald-300 to-green-300 dark:from-emerald-800 dark:to-green-800 dark:border-green-700 hover:scale-105 transition cursor-pointer mt-3 flex flex-row gap-2 items-center md:text-base text-sm"
       title="Download CV"
       data-tooltip-id="download-cv"
     >
       <Download class="md:size-6 size-5" />
-      {t(lang => lang.hero.downloadCV.button)}
+      {t((lang) => lang.hero.downloadCV.button)}
     </button>
 
     <Tooltip
@@ -56,16 +56,20 @@ const t = useTranslations(lang);
       <div class="flex flex-col gap-2 my-1">
         <a
           class="hover:underline py-0.5"
-          href="/harvard-cv.pdf"
+          href="/docs/CV_Cristian_Morales.docx"
           target="_blank"
+          download
         >
-          {t(lang => lang.hero.downloadCV.harvard)}</a
+          {t((lang) => lang.hero.downloadCV.harvard)}</a
         >
         <a
           class="hover:underline py-0.5"
-          href="/web-cv.pdf"
-          target="_blank">{t(lang => lang.hero.downloadCV.clasic)}</a
+          href="/docs/CV_Cristian-Morales_clasica.pdf"
+          target="_blank"
+          download
         >
+          {t((lang) => lang.hero.downloadCV.clasic)}
+        </a>
       </div>
     </Tooltip>
   </div>
