@@ -52,7 +52,7 @@ export const ui = {
 					certificateName: 'Curso en fundamentos básicos en programación java'
 				},
 				'sena-acc': {
-					certificateName: 'Apropiación de conceptops en ciberseguridad'
+					certificateName: 'Apropiación de conceptos en ciberseguridad'
 				}
 			}
 		},
