@@ -15,7 +15,7 @@ export interface Network {
 
 export const NETWORKS: Network[] = [
 	{
-		href: 'https://www.linkedin.com/in/devcristianmorales/',
+		href: 'https://www.linkedin.com/in/cmoralesdev/',
 		id: 'Linkedin',
 		icon: Linkedin
 	},
