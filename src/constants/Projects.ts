@@ -159,7 +159,7 @@ export const PROJECTS: Project[] = [
 		type: 'app',
 		isAppMobile: true,
 		thereIsApk: true,
-		apkPath: '/apks/todo-cm.apk',
+		apkPath: 'https://cmorales.work/todo cm.apk',
 		skills: [
 			{
 				id: 'react',
