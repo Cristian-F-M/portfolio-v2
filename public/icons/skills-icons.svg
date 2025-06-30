@@ -267,7 +267,7 @@
     id='acode'
     viewBox='0 0 48 48'
     xmlns='http://www.w3.org/2000/svg'
-    fill='#000'
+    fill='currentColor'
     >
     <g id='SVGRepo_iconCarrier'>
       <defs>
