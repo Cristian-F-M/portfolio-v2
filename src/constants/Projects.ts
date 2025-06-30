@@ -1,438 +1,522 @@
-import type { ui } from '@/i18n/ui'
+import type { ui } from "@/i18n/ui";
 
-type PathToString<T, P extends string = ''> = {
+type PathToString<T, P extends string = ""> = {
 	[K in keyof T]: T[K] extends object
-		? PathToString<T[K], `${P}${P extends '' ? '' : '.'}${Extract<K, string>}`>
-		: `${P}${P extends '' ? '' : '.'}${Extract<K, string>}`
-}[keyof T]
+		? PathToString<T[K], `${P}${P extends "" ? "" : "."}${Extract<K, string>}`>
+		: `${P}${P extends "" ? "" : "."}${Extract<K, string>}`;
+}[keyof T];
 
-export type Path = PathToString<(typeof ui)[keyof typeof ui]>
+export type Path = PathToString<(typeof ui)[keyof typeof ui]>;
 
 interface ProjectImage {
-	path: string
-	alt: Path
+	path: string;
+	alt: Path;
 }
 
 interface Skill {
-	id: string
-	text: string
+	id: string;
+	text: string;
 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-	icon: any
+	icon: any;
 }
 
 interface BaseProject {
-	id: string
-	name: Path
-	description: Path
-	mainImage: ProjectImage
-	images: ProjectImage[]
-	skills: Skill[]
-	github?: string
-	type: 'web' | 'app' | 'api' | 'command'
+	id: string;
+	name: Path;
+	description: Path;
+	mainImage: ProjectImage;
+	images: ProjectImage[];
+	skills: Skill[];
+	github?: string;
+	type: "web" | "app" | "api" | "command";
 }
 
-type URL = `${`${'https' | 'http'}://` | 'www.'}${string}`
+type URL = `${`${"https" | "http"}://` | "www."}${string}`;
 
 export type Project = BaseProject &
 	(
 		| ({
-				isAppMobile: true
+				isAppMobile: true;
 		  } & ({ thereIsApk: false } | { thereIsApk: true; apkPath: string }))
 		| ({ isAppMobile: false } & (
 				| { isActive: true; url: URL }
 				| { isActive: false }
 		  ))
-	)
+	);
 export const PROJECTS: Project[] = [
 	{
-		id: 'web-votaciones-v2',
-		name: 'projects.projects.votaciones.web.name',
-		description: 'projects.projects.votaciones.web.description',
+		id: "web-votaciones-v2",
+		name: "projects.projects.votaciones.web.name",
+		description: "projects.projects.votaciones.web.description",
 		mainImage: {
-			path: '/images/projects/votaciones/web/votaciones-web-login.png',
-			alt: 'projects.projects.votaciones.web.mainImageAlt'
+			path: "/images/projects/votaciones/web/votaciones-web-login.png",
+			alt: "projects.projects.votaciones.web.mainImageAlt",
 		},
-		github: 'https://github.com/Cristian-F-M/web-votaciones-v2',
+		github: "https://github.com/Cristian-F-M/web-votaciones-v2",
 		isActive: false,
 		isAppMobile: false,
-		type: 'web',
+		type: "web",
 		images: [],
 		skills: [
 			{
-				id: 'react',
-				icon: 'react',
-				text: 'React'
+				id: "react",
+				icon: "react",
+				text: "React",
 			},
 			{
-				id: 'next.js',
-				icon: 'next.js',
-				text: 'Next.js'
+				id: "next.js",
+				icon: "next.js",
+				text: "Next.js",
 			},
 			{
-				id: 'tailwindcss',
-				icon: 'tailwindcss',
-				text: 'Tailwindcss'
+				id: "tailwindcss",
+				icon: "tailwindcss",
+				text: "Tailwindcss",
 			},
 			{
-				id: 'typescript',
-				icon: 'typescript',
-				text: 'TypeScript'
+				id: "typescript",
+				icon: "typescript",
+				text: "TypeScript",
 			},
 			{
-				id: 'zustand',
-				icon: 'zustand',
-				text: 'Zustand'
-			}
-		]
+				id: "zustand",
+				icon: "zustand",
+				text: "Zustand",
+			},
+		],
 	},
 	{
-		id: 'app-votaciones-v2',
-		name: 'projects.projects.votaciones.app.name',
+		id: "app-votaciones-v2",
+		name: "projects.projects.votaciones.app.name",
 		mainImage: {
-			alt: 'projects.projects.votaciones.app.mainImageAlt',
-			path: '/images/projects/votaciones/app/votaciones-app-login.jpg'
+			alt: "projects.projects.votaciones.app.mainImageAlt",
+			path: "/images/projects/votaciones/app/votaciones-app-login.jpg",
 		},
-		description: 'projects.projects.votaciones.app.description',
+		description: "projects.projects.votaciones.app.description",
 		isAppMobile: true,
 		thereIsApk: false,
-		type: 'app',
-		github: 'https://github.com/Cristian-F-M/app-votaciones-v2',
+		type: "app",
+		github: "https://github.com/Cristian-F-M/app-votaciones-v2",
 		skills: [
 			{
-				id: 'react',
-				icon: 'react',
-				text: 'React'
+				id: "react",
+				icon: "react",
+				text: "React",
 			},
 			{
-				id: 'tailwindcss',
-				icon: 'tailwindcss',
-				text: 'Tailwindcss'
+				id: "tailwindcss",
+				icon: "tailwindcss",
+				text: "Tailwindcss",
 			},
 			{
-				id: 'expo',
-				icon: 'expo',
-				text: 'Expo'
+				id: "expo",
+				icon: "expo",
+				text: "Expo",
 			},
 			{
-				id: 'react-native',
-				icon: 'react-native',
-				text: 'React Native'
+				id: "react-native",
+				icon: "react-native",
+				text: "React Native",
 			},
 			{
-				id: 'typescript',
-				icon: 'typescript',
-				text: 'TypeScript'
-			}
+				id: "typescript",
+				icon: "typescript",
+				text: "TypeScript",
+			},
 		],
-		images: []
+		images: [],
 	},
 	{
-		id: 'todo-cm',
-		name: 'projects.projects.todoCm.name',
+		id: "todo-cm",
+		name: "projects.projects.todoCm.name",
 		mainImage: {
-			alt: 'projects.projects.todoCm.mainImageAlt',
-			path: '/images/projects/todo-cm/todo-cm.jpg'
+			alt: "projects.projects.todoCm.mainImageAlt",
+			path: "/images/projects/todo-cm/todo-cm.jpg",
 		},
-		description: 'projects.projects.todoCm.description',
+		description: "projects.projects.todoCm.description",
 		images: [
 			{
-				alt: 'projects.page.genericImageAlt',
-				path: '/images/projects/todo-cm/todo-cm-1.jpg'
+				alt: "projects.page.genericImageAlt",
+				path: "/images/projects/todo-cm/todo-cm-1.jpg",
 			},
 			{
-				alt: 'projects.page.genericImageAlt',
+				alt: "projects.page.genericImageAlt",
 
-				path: '/images/projects/todo-cm/todo-cm-2.jpg'
+				path: "/images/projects/todo-cm/todo-cm-2.jpg",
 			},
 			{
-				alt: 'projects.page.genericImageAlt',
+				alt: "projects.page.genericImageAlt",
 
-				path: '/images/projects/todo-cm/todo-cm-2.jpg'
+				path: "/images/projects/todo-cm/todo-cm-2.jpg",
 			},
 			{
-				alt: 'projects.page.genericImageAlt',
+				alt: "projects.page.genericImageAlt",
 
-				path: '/images/projects/todo-cm/todo-cm-4.jpg'
-			}
+				path: "/images/projects/todo-cm/todo-cm-4.jpg",
+			},
 		],
-		github: 'https://github.com/Cristian-F-M/todo-app-v2',
-		type: 'app',
+		github: "https://github.com/Cristian-F-M/todo-app-v2",
+		type: "app",
 		isAppMobile: true,
 		thereIsApk: true,
-		apkPath: 'https://cmorales.work/todo cm.apk',
+		apkPath: "https://cmorales.work/todo cm.apk",
 		skills: [
 			{
-				id: 'react',
-				icon: 'react',
-				text: 'React'
+				id: "react",
+				icon: "react",
+				text: "React",
 			},
 			{
-				id: 'tailwindcss',
-				icon: 'tailwindcss',
-				text: 'Tailwindcss'
+				id: "tailwindcss",
+				icon: "tailwindcss",
+				text: "Tailwindcss",
 			},
 			{
-				id: 'expo',
-				icon: 'expo',
-				text: 'Expo'
+				id: "expo",
+				icon: "expo",
+				text: "Expo",
 			},
 			{
-				id: 'react-native',
-				icon: 'react-native',
-				text: 'React Native'
+				id: "react-native",
+				icon: "react-native",
+				text: "React Native",
 			},
 			{
-				id: 'sqlite',
-				icon: 'sqlite',
-				text: 'SQLite'
+				id: "sqlite",
+				icon: "sqlite",
+				text: "SQLite",
 			},
 			{
-				id: 'typescript',
-				icon: 'typescript',
-				text: 'TypeScript'
-			}
-		]
-	},
-	{
-		id: 'touch-command',
-		name: 'projects.projects.touchCommand.name',
-		description: 'projects.projects.touchCommand.description',
-		github: 'https://github.com/Cristian-F-M/touch-for-powershell',
-		isAppMobile: false,
-		isActive: false,
-		type: 'command',
-		mainImage: {
-			alt: 'projects.projects.touchCommand.mainImageAlt',
-			path: '/images/projects/touch-command/touch-command.png'
-		},
-		images: [],
-		skills: [
-			{
-				id: 'powershell',
-				icon: 'powershell',
-				text: 'Powershell'
-			}
-		]
-	},
-	{
-		id: 'video-player',
-		name: 'projects.projects.videoPlayer.name',
-		description: 'projects.projects.videoPlayer.description',
-		isActive: true,
-		isAppMobile: false,
-		type: 'web',
-		github: 'https://github.com/Cristian-F-M/video-player',
-		url: 'https://video-player-lemon-six.vercel.app/',
-		mainImage: {
-			alt: 'projects.projects.videoPlayer.mainImageAlt',
-			path: '/images/projects/video-player/video-player.png'
-		},
-		skills: [
-			{
-				id: 'react',
-				icon: 'react',
-				text: 'React'
+				id: "typescript",
+				icon: "typescript",
+				text: "TypeScript",
 			},
-			{
-				id: 'tailwindcss',
-				icon: 'tailwindcss',
-				text: 'Tailwindcss'
-			},
-			{
-				id: 'typescript',
-				icon: 'typescript',
-				text: 'Typescript'
-			}
 		],
-		images: []
 	},
 	{
-		id: 'hoja-de-vida',
-		name: 'projects.projects.hojaDeVida.name',
-		description: 'projects.projects.hojaDeVida.description',
-		isActive: true,
+		id: "touch-command",
+		name: "projects.projects.touchCommand.name",
+		description: "projects.projects.touchCommand.description",
+		github: "https://github.com/Cristian-F-M/touch-for-powershell",
 		isAppMobile: false,
-		type: 'web',
-		github: 'https://github.com/Cristian-F-M/hoja-de-vida',
-		url: 'https://hoja-de-vida-theta-nine.vercel.app/',
+		isActive: false,
+		type: "command",
 		mainImage: {
-			alt: 'projects.projects.hojaDeVida.mainImageAlt',
-			path: '/images/projects/hoja-de-vida/hoja-de-vida.png'
+			alt: "projects.projects.touchCommand.mainImageAlt",
+			path: "/images/projects/touch-command/touch-command.png",
 		},
 		images: [],
 		skills: [
 			{
-				id: 'astro',
-				icon: 'astro',
-				text: 'Astro'
+				id: "powershell",
+				icon: "powershell",
+				text: "Powershell",
 			},
-			{
-				id: 'tailwindcss',
-				icon: 'tailwindcss',
-				text: 'Tailwindcss'
-			},
-			{
-				id: 'javascript',
-				icon: 'javascript',
-				text: 'JavaScript'
-			}
-		]
+		],
 	},
 	{
-		id: 'astronomy-picture-day',
-		name: 'projects.projects.astronomyPictureDay.name',
-		description: 'projects.projects.astronomyPictureDay.description',
+		id: "video-player",
+		name: "projects.projects.videoPlayer.name",
+		description: "projects.projects.videoPlayer.description",
 		isActive: true,
 		isAppMobile: false,
-		type: 'web',
-		url: 'https://astronomy-picture-day.netlify.app/',
-		github: 'https://github.com/Cristian-F-M/astronomy-picture-day',
+		type: "web",
+		github: "https://github.com/Cristian-F-M/video-player",
+		url: "https://video-player-lemon-six.vercel.app/",
 		mainImage: {
-			alt: 'projects.projects.astronomyPictureDay.mainImageAlt',
-			path: '/images/projects/astronomy-picture-day/astronomy-picture-day.png'
+			alt: "projects.projects.videoPlayer.mainImageAlt",
+			path: "/images/projects/video-player/video-player.png",
+		},
+		skills: [
+			{
+				id: "react",
+				icon: "react",
+				text: "React",
+			},
+			{
+				id: "tailwindcss",
+				icon: "tailwindcss",
+				text: "Tailwindcss",
+			},
+			{
+				id: "typescript",
+				icon: "typescript",
+				text: "Typescript",
+			},
+		],
+		images: [],
+	},
+	{
+		id: "hoja-de-vida",
+		name: "projects.projects.hojaDeVida.name",
+		description: "projects.projects.hojaDeVida.description",
+		isActive: true,
+		isAppMobile: false,
+		type: "web",
+		github: "https://github.com/Cristian-F-M/hoja-de-vida",
+		url: "https://hoja-de-vida-theta-nine.vercel.app/",
+		mainImage: {
+			alt: "projects.projects.hojaDeVida.mainImageAlt",
+			path: "/images/projects/hoja-de-vida/hoja-de-vida.png",
 		},
 		images: [],
 		skills: [
 			{
-				id: 'react',
-				icon: 'react',
-				text: 'React'
+				id: "astro",
+				icon: "astro",
+				text: "Astro",
 			},
 			{
-				id: 'tailwindcss',
-				icon: 'tailwindcss',
-				text: 'Tailwindcss'
+				id: "tailwindcss",
+				icon: "tailwindcss",
+				text: "Tailwindcss",
 			},
 			{
-				id: 'javascript',
-				icon: 'javascript',
-				text: 'JavaScript'
-			}
-		]
+				id: "javascript",
+				icon: "javascript",
+				text: "JavaScript",
+			},
+		],
 	},
 	{
-		id: 'api-votaciones-v2',
-		name: 'projects.projects.votaciones.api.name',
-		description: 'projects.projects.votaciones.api.description',
+		id: "astronomy-picture-day",
+		name: "projects.projects.astronomyPictureDay.name",
+		description: "projects.projects.astronomyPictureDay.description",
+		isActive: true,
+		isAppMobile: false,
+		type: "web",
+		url: "https://astronomy-picture-day.netlify.app/",
+		github: "https://github.com/Cristian-F-M/astronomy-picture-day",
+		mainImage: {
+			alt: "projects.projects.astronomyPictureDay.mainImageAlt",
+			path: "/images/projects/astronomy-picture-day/astronomy-picture-day.png",
+		},
+		images: [],
+		skills: [
+			{
+				id: "react",
+				icon: "react",
+				text: "React",
+			},
+			{
+				id: "tailwindcss",
+				icon: "tailwindcss",
+				text: "Tailwindcss",
+			},
+			{
+				id: "javascript",
+				icon: "javascript",
+				text: "JavaScript",
+			},
+		],
+	},
+	{
+		id: "api-votaciones-v2",
+		name: "projects.projects.votaciones.api.name",
+		description: "projects.projects.votaciones.api.description",
 		isActive: false,
 		isAppMobile: false,
-		type: 'api',
+		type: "api",
 		mainImage: {
-			alt: 'projects.projects.votaciones.api.mainImageAlt',
-			path: '/images/projects/votaciones/api/api.png'
+			alt: "projects.projects.votaciones.api.mainImageAlt",
+			path: "/images/projects/votaciones/api/api.png",
 		},
-		github: 'https://github.com/Cristian-F-M/api-votaciones-v2',
+		github: "https://github.com/Cristian-F-M/api-votaciones-v2",
 		images: [],
 		skills: [
 			{
-				id: 'sequelize',
-				icon: 'sequelize',
-				text: 'Sequelize'
+				id: "sequelize",
+				icon: "sequelize",
+				text: "Sequelize",
 			},
 			{
-				id: 'typescript',
-				icon: 'typescript',
-				text: 'TypeScript'
+				id: "typescript",
+				icon: "typescript",
+				text: "TypeScript",
 			},
 
 			{
-				id: 'jsonwebtoken',
-				icon: 'jsonwebtoken',
-				text: 'Json Web Token (JWT)'
+				id: "jsonwebtoken",
+				icon: "jsonwebtoken",
+				text: "Json Web Token (JWT)",
 			},
 			{
-				id: 'express',
-				icon: 'express',
-				text: 'Express'
+				id: "express",
+				icon: "express",
+				text: "Express",
 			},
 			{
-				id: 'mysql',
-				icon: 'mysql',
-				text: 'MySQL'
+				id: "mysql",
+				icon: "mysql",
+				text: "MySQL",
 			},
 			{
-				id: 'sqlite',
-				icon: 'sqlite',
-				text: 'SQLite'
+				id: "sqlite",
+				icon: "sqlite",
+				text: "SQLite",
 			},
 			{
-				id: 'node',
-				icon: 'node',
-				text: 'Node.js'
-			}
-		]
+				id: "node",
+				icon: "node",
+				text: "Node.js",
+			},
+		],
 	},
 	{
-		id: 'buscaminas',
-		name: 'projects.projects.buscaminas.name',
-		description: 'projects.projects.buscaminas.description',
+		id: "buscaminas",
+		name: "projects.projects.buscaminas.name",
+		description: "projects.projects.buscaminas.description",
 		isActive: true,
 		isAppMobile: false,
-		type: 'web',
-		url: 'https://buscaminas-rho.vercel.app/',
-		github: 'https://github.com/Cristian-F-M/buscaminas',
+		type: "web",
+		url: "https://buscaminas-rho.vercel.app/",
+		github: "https://github.com/Cristian-F-M/buscaminas",
 		mainImage: {
-			alt: 'projects.projects.buscaminas.mainImageAlt',
-			path: '/images/projects/buscaminas/buscaminas.png'
+			alt: "projects.projects.buscaminas.mainImageAlt",
+			path: "/images/projects/buscaminas/buscaminas.png",
 		},
 		images: [],
 		skills: [
 			{
-				id: 'html',
-				icon: 'html',
-				text: 'HTML'
+				id: "html",
+				icon: "html",
+				text: "HTML",
 			},
 			{
-				id: 'css',
-				icon: 'css',
-				text: 'CSS'
+				id: "css",
+				icon: "css",
+				text: "CSS",
 			},
 			{
-				id: 'javascript',
-				icon: 'javascript',
-				text: 'JavaScript'
-			}
-		]
+				id: "javascript",
+				icon: "javascript",
+				text: "JavaScript",
+			},
+		],
 	},
 	{
-		id: 'wordle',
-		description: 'projects.projects.wordle.description',
-		name: 'projects.projects.wordle.name',
+		id: "wordle",
+		description: "projects.projects.wordle.description",
+		name: "projects.projects.wordle.name",
 		isActive: true,
 		isAppMobile: false,
-		type: 'web',
-		url: 'https://wordle-alpha-indol.vercel.app/',
-		github: 'https://github.com/Cristian-F-M/wordle',
+		type: "web",
+		url: "https://wordle-alpha-indol.vercel.app/",
+		github: "https://github.com/Cristian-F-M/wordle",
 		mainImage: {
-			path: '/images/projects/wordle/wordle.png',
-			alt: 'projects.projects.wordle.mainImageAlt'
+			path: "/images/projects/wordle/wordle.png",
+			alt: "projects.projects.wordle.mainImageAlt",
 		},
 		images: [],
 		skills: [
 			{
-				id: 'html',
-				icon: 'html',
-				text: 'HTML'
+				id: "html",
+				icon: "html",
+				text: "HTML",
 			},
 			{
-				id: 'css',
-				icon: 'css',
-				text: 'CSS'
+				id: "css",
+				icon: "css",
+				text: "CSS",
 			},
 			{
-				id: 'javascript',
-				icon: 'javascript',
-				text: 'JavaScript'
+				id: "javascript",
+				icon: "javascript",
+				text: "JavaScript",
 			},
 			{
-				id: 'tailwindcss',
-				icon: 'tailwindcss',
-				text: 'Tailwindcss'
-			}
-		]
-	}
-]
+				id: "tailwindcss",
+				icon: "tailwindcss",
+				text: "Tailwindcss",
+			},
+		],
+	},
+	{
+		id: "python-games-web",
+		description: "projects.projects.pythonGamesWeb.description",
+		name: "projects.projects.pythonGamesWeb.name",
+		mainImage: {
+			path: "/images/projects/python-games-web/python-games-web.png",
+			alt: "projects.projects.pythonGamesWeb.mainImageAlt",
+		},
+		isAppMobile: false,
+		isActive: true,
+		type: "web",
+		url: "https://python-games-web.vercel.app/",
+		github: "https://github.com/Cristian-F-M/python-games-web",
+		images: [
+      {
+        path: '/images/projects/python-games-web/python-games-web_1.png',
+        alt: 'projects.page.genericImageAlt'
+      },
+      {
+        path: '/images/projects/python-games-web/python-games-web_2.png',
+        alt: 'projects.page.genericImageAlt'
+      },
+      {
+        path: '/images/projects/python-games-web/python-games-web_3.png',
+        alt: 'projects.page.genericImageAlt'
+      }
+    ],
+		skills: [
+      {
+        id: 'astro',
+        icon: 'astro',
+        text: 'Astro'
+      },
+      {
+        id: 'tailwindcss',
+        icon: 'tailwindcss',
+        text: 'Tailwindcss'
+      },
+      {
+        id: 'javascript',
+        icon: 'javascript',
+        text: 'JavaScript'
+      }
+    ],
+	},
+  {
+    id: 'python-games-from-android',
+    description: 'projects.projects.pythonGamesFromAndroid.description',
+    name: 'projects.projects.pythonGamesFromAndroid.name',
+    mainImage: {
+      path: '/images/projects/python-games-from-android/python-games-from-android.png',
+      alt: 'projects.projects.pythonGamesFromAndroid.mainImageAlt'
+    },
+    isAppMobile: false,
+    isActive: false,
+    type: 'command',
+    github: 'https://github.com/Cristian-F-M/python-games-from-android',
+    images: [
+      {
+        path: '/images/projects/python-games-from-android/python-games-from-android_1.png',
+        alt: 'projects.page.genericImageAlt',
+      },
+      {
+        path: '/images/projects/python-games-from-android/python-games-from-android_2.png',
+        alt: 'projects.page.genericImageAlt',
+      },
+      {
+        path: '/images/projects/python-games-from-android/python-games-from-android_3.png',
+        alt: 'projects.page.genericImageAlt',
+      }
+    ],
+    skills: [
+      {
+        id: 'python',
+        icon: 'python',
+        text: 'Python'
+      },
+      {
+        id: 'acode',
+        icon: 'acode',
+        text: 'Acode'
+      }
+    ]
+  }
+];
 
 export function getProjectById(id: string) {
-	return PROJECTS.find((p) => p.id === id)
+	return PROJECTS.find((p) => p.id === id);
 }
