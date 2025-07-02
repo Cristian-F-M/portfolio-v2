@@ -104,6 +104,8 @@ export const ui = {
 			seeDemoText: "Ver demo",
 			seeProjectDemoText: "Haz clic para ver la demostración del projecto",
 			seeMoreProjects: "Ver Más Proyectos",
+      homeText: 'Inicio',
+      projectsText: 'Proyectos',
 			projects: {
 				votaciones: {
 					api: {
@@ -246,6 +248,8 @@ export const ui = {
 			seeDemoText: "View demo",
 			seeProjectDemoText: "Click to see project demo",
 			seeMoreProjects: "See More Projects",
+      homeText: 'Home',
+      projectsText: 'Projects',
 			page: {
 				title: "Projects completed by Cristian Fernando Morales Diaz",
 				description:
@@ -347,6 +351,18 @@ export const ui = {
 					description:
 						"A word-guessing game with several attempts, giving the user color-coded feedback on each letter correctly guessed.",
 					mainImageAlt: "Image from the Wordle project",
+				},
+        pythonGamesWeb: {
+					name: "Python games (web)",
+					description:
+						"Pagina web para mostrar juegos creados utilizando python, usando Pyodide para realizar la ejecución de python en la web, además de adecuaciones para poder se ejecutados, utilizando elementos html para realizar funciones básica como `print` e `input`",
+					mainImageAlt: "Imagen del proyecto python games web",
+				},
+				pythonGamesFromAndroid: {
+					name: "Juego en Python desde Android",
+					description:
+						"Juegos realizados desde un dispositivo móvil, usando Acode como editor de código, python como lenguaje de programación y termux como terminal.",
+					mainImageAlt: "Imagen del proyecto Juego en Python desde Android",
 				},
 			},
 		},
