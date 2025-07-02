@@ -124,7 +124,28 @@ export const PROJECTS: Project[] = [
 				text: "TypeScript",
 			},
 		],
-		images: [],
+		images: [
+      {
+        alt: 'projects.page.genericImageAlt',
+        path: '/images/projects/votaciones/app/votaciones-app_1.jpg'
+      },
+      {
+        alt: 'projects.page.genericImageAlt',
+        path: '/images/projects/votaciones/app/votaciones-app_2.jpg'
+      },
+      {
+        alt: 'projects.page.genericImageAlt',
+        path: '/images/projects/votaciones/app/votaciones-app_3.jpg'
+      },
+      {
+        alt: 'projects.page.genericImageAlt',
+        path: '/images/projects/votaciones/app/votaciones-app_4.jpg'
+      },
+      {
+        alt: 'projects.page.genericImageAlt',
+        path: '/images/projects/votaciones/app/votaciones-app_5.jpg'
+      }
+    ],
 	},
 	{
 		id: "todo-cm",
@@ -205,7 +226,16 @@ export const PROJECTS: Project[] = [
 			alt: "projects.projects.touchCommand.mainImageAlt",
 			path: "/images/projects/touch-command/touch-command.png",
 		},
-		images: [],
+		images: [
+      {
+        alt: 'projects.page.genericImageAlt',
+        path: '/images/projects/touch-command/touch-command_1.png'
+      },
+      {
+        alt: 'projects.page.genericImageAlt',
+        path: '/images/projects/touch-command/touch-command_2.png'
+      },
+    ],
 		skills: [
 			{
 				id: "powershell",
@@ -244,7 +274,16 @@ export const PROJECTS: Project[] = [
 				text: "Typescript",
 			},
 		],
-		images: [],
+		images: [
+      {
+        alt: 'projects.page.genericImageAlt',
+        path: '/images/projects/video-player/video-player_1.png'
+      },
+      {
+        alt: 'projects.page.genericImageAlt',
+        path: '/images/projects/video-player/video-player_2.png'
+      }
+    ],
 	},
 	{
 		id: "hoja-de-vida",
@@ -259,7 +298,20 @@ export const PROJECTS: Project[] = [
 			alt: "projects.projects.hojaDeVida.mainImageAlt",
 			path: "/images/projects/hoja-de-vida/hoja-de-vida.png",
 		},
-		images: [],
+		images: [
+      {
+        alt: 'projects.page.genericImageAlt',
+        path: '/images/projects/hoja-de-vida/hoja-de-vida_1.png'
+      },
+      {
+        alt: 'projects.page.genericImageAlt',
+        path: '/images/projects/hoja-de-vida/hoja-de-vida_2.png'
+      },
+      {
+        alt: 'projects.page.genericImageAlt',
+        path: '/images/projects/hoja-de-vida/hoja-de-vida_3.png'
+      }
+    ],
 		skills: [
 			{
 				id: "astro",
@@ -322,7 +374,20 @@ export const PROJECTS: Project[] = [
 			path: "/images/projects/votaciones/api/api.png",
 		},
 		github: "https://github.com/Cristian-F-M/api-votaciones-v2",
-		images: [],
+		images: [
+      {
+        alt: 'projects.page.genericImageAlt',
+        path: '/images/projects/votaciones/api/api_1.png'
+      },
+      {
+        alt: 'projects.page.genericImageAlt',
+        path: '/images/projects/votaciones/api/api_2.png'
+      },
+      {
+        alt: 'projects.page.genericImageAlt',
+        path: '/images/projects/votaciones/api/api_3.png'
+      },
+    ],
 		skills: [
 			{
 				id: "sequelize",
@@ -375,7 +440,16 @@ export const PROJECTS: Project[] = [
 			alt: "projects.projects.buscaminas.mainImageAlt",
 			path: "/images/projects/buscaminas/buscaminas.png",
 		},
-		images: [],
+		images: [
+      {
+        alt: 'projects.page.genericImageAlt',
+        path: '/images/projects/buscaminas/buscaminas_1.png'
+      },
+      {
+        alt: 'projects.page.genericImageAlt',
+        path: '/images/projects/buscaminas/buscaminas_2.png'
+      },
+    ],
 		skills: [
 			{
 				id: "html",
