@@ -67,7 +67,9 @@ const isActive =
               data-url={github}
             >
               <Github />
-              <span class="md:block hidden">{t((lang) => lang.projects.page.codeText)}</span>
+              <span class="md:block hidden">
+                {t((lang) => lang.projects.page.codeText)}
+              </span>
             </button>
           )
         }
@@ -78,7 +80,9 @@ const isActive =
               data-url={project.url}
             >
               <SquareArrow />
-              <span class="md:block hidden">{t((lang) => lang.projects.seeDemoText)}</span>
+              <span class="md:block hidden">
+                {t((lang) => lang.projects.seeDemoText)}
+              </span>
             </button>
           )
         }
@@ -91,7 +95,9 @@ const isActive =
               href={project.apkPath}
             >
               <Download />
-              <span class="md:block hidden">{t((lang) => lang.projects.page.dowloadApkText)}</span>
+              <span class="md:block hidden">
+                {t((lang) => lang.projects.page.dowloadApkText)}
+              </span>
             </a>
           )
         }
@@ -104,7 +110,10 @@ const isActive =
     </div>
   </header>
 
-  <main id="main" class="flex md:flex-row flex-col gap-6 justify-center mt-6 px-6">
+  <main
+    id="main"
+    class="flex md:flex-row flex-col gap-6 justify-center mt-6 px-6"
+  >
     <div class="md:w-3/5 h-[420px] w-full">
       <div class="gallery f-carousel size-full" id="project-carousel">
         <div
@@ -283,7 +292,10 @@ const isActive =
       e.stopPropagation();
       e.preventDefault();
       const target = e.target as HTMLButtonElement;
-      const { url, target: urlTarget } = target.dataset;
+      const button = target.closest("button");
+      
+      if (!button) return;
+      const { url, target: urlTarget } = button.dataset;
       window.open(url, urlTarget ?? "_blank");
     });
   });
