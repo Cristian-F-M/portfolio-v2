@@ -26,7 +26,9 @@ const t = useTranslations(lang);
   description={t((lang) => lang.index.description)}
 >
   <main class="lg:w-full w-11/12 max-w-[800px] mx-auto py-4">
-    <div class="justify-self-end flex gap-3">
+    <div
+      class="lang-theme-changer justify-self-end flex gap-3 sticky top-2 z-50 backdrop-blur p-2 rounded"
+    >
       <ThemeToggle />
       <LangChanger />
     </div>
@@ -38,3 +40,25 @@ const t = useTranslations(lang);
     <Skills />
   </main>
 </Layout>
+
+<style>
+  @reference 'tailwindcss';
+
+  .lang-theme-changer::before {
+    @apply content-[""] absolute inset-0  dark:bg-slate-500/40 -z-10 opacity-0 rounded;
+
+    animation-name: bgFade;
+    animation-fill-mode: both;
+    animation-range: 45px 60px;
+    animation-timeline: scroll();
+  }
+
+  @keyframes bgFade {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+</style>

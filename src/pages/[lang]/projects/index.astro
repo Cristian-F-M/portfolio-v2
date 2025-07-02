@@ -23,7 +23,7 @@ const t = useTranslations(lang);
   title={t((lang) => lang.projects.page.title)}
   description={t((lang) => lang.projects.page.description)}
 >
-  <div class="my-2 mx-3 flex flex-row items-center justify-between">
+  <div class="my-2 mx-3 flex flex-row items-center justify-between sticky top-4 z-50 backdrop-blur lang-theme-changer--header p-2">
     <div class="flex flex-row gap-4 items-center">
       <a
         href={getRelativeLocaleUrl(lang, '/')}
@@ -65,3 +65,27 @@ const t = useTranslations(lang);
     </div>
   </main>
 </Layout>
+
+
+
+<style>
+  @reference 'tailwindcss';
+
+  .lang-theme-changer--header::before {
+    @apply content-[""] absolute inset-0  dark:bg-slate-400/40 -z-10 opacity-0 rounded;
+
+    animation-name: bgFade;
+    animation-fill-mode: both;
+    animation-range: 45px 60px;
+    animation-timeline: scroll();
+  }
+
+  @keyframes bgFade {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+</style>
