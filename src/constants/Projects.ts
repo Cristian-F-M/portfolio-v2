@@ -44,6 +44,56 @@ export type Project = BaseProject &
 		  ))
 	);
 export const PROJECTS: Project[] = [
+  {
+    id: "solitario",
+    name: "projects.projects.solitario.name",
+    description: "projects.projects.solitario.description",
+    mainImage: {
+      path: "/images/projects/solitario/solitario.jpg",
+      alt: "projects.projects.solitario.mainImageAlt",
+    },
+    isActive: true,
+    isAppMobile: false,
+    type: "web",
+    url: "https://solitario-chi.vercel.app/",
+    github: "https://github.com/Cristian-F-M/solitario",
+    images: [
+      {
+        path: "/images/projects/solitario/solitario-1.jpg",
+        alt: "projects.page.genericImageAlt",
+      },
+      {
+        path: "/images/projects/solitario/solitario-2.jpg",
+        alt: "projects.page.genericImageAlt",
+      },
+      {
+        path: "/images/projects/solitario/solitario-3.jpg",
+        alt: "projects.page.genericImageAlt",
+      },
+    ],
+    skills: [
+      {
+        id: "html",
+        icon: "html",
+        text: "HTML",
+      },
+      {
+        id: "css",
+        icon: "css",
+        text: "CSS",
+      },
+      {
+        id: "javascript",
+        icon: "javascript",
+        text: "JavaScript",
+      },
+      {
+        id: "tailwindcss",
+        icon: "tailwindcss",
+        text: "Tailwindcss"
+      }
+    ],
+  },
 	{
 		id: "web-votaciones-v2",
 		name: "projects.projects.votaciones.web.name",

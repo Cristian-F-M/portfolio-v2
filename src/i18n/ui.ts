@@ -185,6 +185,11 @@ export const ui = {
 						"Juegos realizados desde un dispositivo móvil, usando Acode como editor de código, python como lenguaje de programación y termux como terminal.",
 					mainImageAlt: "Imagen del proyecto Juego en Python desde Android",
 				},
+        solitario: {
+          name: "Solitario klondike",
+          description: "Clásico juego de solitario Klondike desarrollado con HTML, CSS y JavaScript, con funcionalidad de arrastrar y soltar cartas, contador de movimientos y temporizador.",
+          mainImageAlt: "Imagen del proyecto Solitario Klondike"
+        }
 			},
 		},
 		skills: {
@@ -363,6 +368,11 @@ export const ui = {
 					description:
 						"Juegos realizados desde un dispositivo móvil, usando Acode como editor de código, python como lenguaje de programación y termux como terminal.",
 					mainImageAlt: "Imagen del proyecto Juego en Python desde Android",
+				},
+				solitario: {
+					name: "Klondike Solitaire",
+					description: "Classic Klondike solitaire game developed with HTML, CSS, and JavaScript, featuring drag-and-drop card functionality, move counter, and timer.",
+					mainImageAlt: "Image of the Klondike Solitaire project"
 				},
 			},
 		},
