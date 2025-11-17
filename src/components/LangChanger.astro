@@ -109,6 +109,8 @@ const langugagesKeys = Object.keys(languages) as (keyof typeof languagesType)[];
         `/${id}`,
       );
       location.href = nuevaRuta;
+
+      localStorage.setItem("lang", id);
     });
   });
 
