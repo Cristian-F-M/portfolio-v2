@@ -62,3 +62,16 @@ const t = useTranslations(lang);
     }
   }
 </style>
+
+<script>
+  window.addEventListener("load", () => {
+    const scrollPos = sessionStorage.getItem("scrollPos");
+    if (scrollPos) {
+      window.scrollTo({
+        top: parseInt(scrollPos),
+        behavior: "smooth",
+      });
+      sessionStorage.removeItem("scrollPos");
+    }
+  });
+</script>

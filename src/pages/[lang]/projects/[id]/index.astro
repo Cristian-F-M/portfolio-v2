@@ -333,9 +333,10 @@ const isActive =
 
 <script>
   const $goBackAnchor = document.querySelector("#go-back") as HTMLAnchorElement;
+  const lang = localStorage.getItem('lang') || 'es'
 
   $goBackAnchor?.addEventListener("click", (e) => {
-    const backUrl = sessionStorage.getItem("projectBackUrl") ?? "/";
+    const backUrl = sessionStorage.getItem("projectBackUrl") ?? `/${lang}`;
     window.location.href = backUrl;
   });
 </script>
