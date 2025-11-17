@@ -16,7 +16,7 @@ export default defineConfig({
     locales: Object.entries(languages).map(([key, _]) => key),
     routing: {
       prefixDefaultLocale: true,
-      redirectToDefaultLocale: true
+      redirectToDefaultLocale: false
     },
   },
 
