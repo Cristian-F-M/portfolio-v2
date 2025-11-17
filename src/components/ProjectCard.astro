@@ -19,16 +19,15 @@ const lang = Astro.params.lang as keyof typeof languages;
 const t = useTranslations(lang);
 ---
 
-<a
-  class={tw("flex md:w-64 w-full md:max-w-64 max-w-80", className)}
-  href={getRelativeLocaleUrl(lang, `projects/${project.id}`)}
+<div
+  class={tw("flex md:w-64 w-full md:max-w-64 max-w-80 peer", className)}
+  data-project-url={getRelativeLocaleUrl(lang, `projects/${project.id}`)}
   id={project.id}
   title={`${t((lang) => lang.projects.cardProjectTitle)} ${getValueByPath(ui[lang], project.name)}`}
   onclick="sessionStorage.setItem('projectBackUrl', window.location.pathname)"
 >
   <div
-    class="card transition-all size-full duration-200 ease-out group relative overflow-hidden cursor-cell perspective-distant md:rotate-x-(--rotate-x) md:rotate-y-(--rotate-y) scale-[scale3d(1,_1,_1)] bg-white/70 backdrop-blur-2xl dark:bg-slate-800/70 border-0 shadow-lg hover:shadow-gray-600/50 dark:hover:shadow-blue-400/10 rounded-md ring-2 ring-blue-500/20 dark:ring-blue-400/20"
-    style="--rotate-x: 0; --rotate-y: 0;"
+    class="card transition-all size-full duration-200 ease-out group relative overflow-hidden cursor-cell perspective-distant scale-[scale3d(1,_1,_1)] bg-white/70 backdrop-blur-2xl dark:bg-slate-800/70 border-0 shadow-lg hover:shadow-gray-600/50 dark:hover:shadow-blue-400/10 rounded-md ring-2 ring-blue-500/20 dark:ring-blue-400/20"
   >
     {/* Shine effect */}
     <div
@@ -54,14 +53,15 @@ const t = useTranslations(lang);
         {
           project.github && (
             <div class="absolute top-4 right-4 z-10 size-8">
-              <button
-                type="button"
-                data-url={project.github}
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
                 title={`${t((lang) => lang.projects.page.seeGithubText)} ${getValueByPath(ui[lang], project.name)}`}
                 class="flex items-center justify-center cursor-pointer border rounded-md size-full p-1 bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm border-slate-200/90 shadow shadow-slate-400/60 dark:border-slate-700/50 hover:bg-slate-900 hover:text-white dark:hover:bg-slate-100 dark:hover:text-slate-900 transition-all duration-300 hover:scale-105 [&_svg]:pointer-events-none"
               >
                 <Github class="size-full" />
-              </button>
+              </a>
             </div>
           )
         }
@@ -70,14 +70,16 @@ const t = useTranslations(lang);
         >
           {
             !project.isAppMobile && project.isActive && (
-              <button
+              <a
                 title={`${t((lang) => lang.projects.seeProjectDemoText)} ${getValueByPath(ui[lang], project.name)}`}
-                data-url={project.url}
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 class="inline-flex items-center w-fit cursor-pointer justify-center gap-2 whitespace-nowrap text-xs font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary hover:bg-primary/90 h-9 rounded-md px-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 hover:-rotate-3"
               >
                 <SquareArrow />
                 {t((lang) => lang.projects.seeDemoText)}
-              </button>
+              </a>
             )
           }
         </div>
@@ -108,7 +110,7 @@ const t = useTranslations(lang);
       </div>
     </div>
   </div>
-</a>
+</div>
 
 <script is:inline define:vars={{ project }}>
   const cardWrapper = document.querySelector(`#${project.id}`);
@@ -123,21 +125,12 @@ const t = useTranslations(lang);
       viewDemoButton?.classList.remove("show");
     });
 
-    card.addEventListener("mousemove", (e) => {
-      const { width, height, left, top } = card.getBoundingClientRect();
-      const x = (e.clientX - left) / width;
-      const y = (e.clientY - top) / height;
-
-      const xRotation = Math.floor((y - 0.5) * 20);
-      const yRotation = Math.floor((x - 0.5) * -20);
-
-      card.style.setProperty("--rotate-x", `${xRotation}deg`);
-      card.style.setProperty("--rotate-y", `${yRotation}deg`);
-    });
-
-    card.addEventListener("mouseleave", () => {
-      card.style.setProperty("--rotate-x", "0deg");
-      card.style.setProperty("--rotate-y", "0deg");
+    card.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      
+      const { projectUrl } = cardWrapper.dataset;
+      window.location.href = projectUrl;
     });
   }
 </script>
