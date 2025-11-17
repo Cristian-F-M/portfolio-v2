@@ -44,7 +44,6 @@ const t = useTranslations(lang);
           data-nimg="1"
           class="w-full h-52 object-cover"
           src={project.mainImage.path}
-          style={`view-transition-name: main-image-${project.id}`}
         />
         <div
           class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"
@@ -144,9 +143,9 @@ const t = useTranslations(lang);
       e.preventDefault();
       const target = e.target as HTMLButtonElement;
       const button = target.closest("button");
-      
+
       if (!button) return;
-      
+
       const { url, target: urlTarget } = button.dataset;
       window.open(url, urlTarget ?? "_blank");
     });
