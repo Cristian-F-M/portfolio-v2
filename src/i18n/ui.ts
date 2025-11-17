@@ -12,6 +12,7 @@ export const ui = {
 				"Portafolio de Cristian Morales | Trainee en el desarrollo de software",
 			description:
 				"Trainee en el desarrollo de software enfocado en el desarrollo web con habilidades en diferentes plataformas como Móvil, Escritorio.",
+        redirectingText: "Redirigiendo de <code>/</code> hacia",
 		},
 		networks: {
 			copyMessage: "Copiado al portapapelest",
@@ -202,6 +203,7 @@ export const ui = {
 			title: "Cristian Morales Portfolio | Trainee in Software Development",
 			description:
 				"Trainee in software development focused on web development with skills in various platforms such as Mobile and Desktop.",
+        redirectingText: "Redirecting from <code>/</code> to",
 		},
 		networks: {
 			copyMessage: "Copied to clipboard",
