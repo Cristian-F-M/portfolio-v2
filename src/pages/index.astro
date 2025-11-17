@@ -1,0 +1,83 @@
+---
+import { useTranslations } from "@/i18n/utils";
+import Layout from "@/layouts/Layout.astro";
+import { ui, languages } from "@/i18n/ui";
+import ThemeToggle from "@/components/ThemeToggle.astro";
+
+const redirectingTexts: Partial<Record<keyof typeof languages, string>> = {};
+
+Object.entries(languages).map(([key, _]) => {
+  const t = useTranslations(key as keyof typeof languages);
+  const redirectingText = t((obj) => obj.index.redirectingText);
+
+  Object.assign(redirectingTexts, { [key]: redirectingText });
+});
+---
+
+<Layout
+  title="Cristian F. M. | Portfolio"
+  description="Cristian F. M. | Portfolio"
+>
+  <div class="fixed top-1 right-1">
+    <ThemeToggle />
+  </div>
+  <div class="w-fit mx-auto flex flex-col items-center gap-4">
+    <p id="redirecting-text"></p>
+    <span
+      role="status"
+      class="loader text-green-900 dark:text-green-300 size-8 inline-block box-border rounded-full border-r-4 border-r-transparent border-t-[3px] border-t-current border-solid animate-loader"
+    >
+    </span>
+  </div>
+</Layout>
+
+<script is:inline define:vars={{ redirectingTexts }}>
+  const text = document.getElementById("redirecting-text");
+  const lang = localStorage.getItem("lang") || "es";
+  const redirectingText = redirectingTexts[lang]
+
+  if (text) text.innerHTML = `${redirectingText} <code>/${lang}/</code>`;
+
+  setTimeout(() => {
+    window.location.href = `/${lang}`;
+  }, 1000);
+</script>
+
+<style>
+  @keyframes loader {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .loader {
+    animation: loader 1s infinite;
+  }
+</style>
+
+<style is:global>
+  body {
+    padding: 30px 0;
+  }
+</style>
+
+<style is:inline>
+  code {
+    background-image: linear-gradient(to right, #5ee9b5, #5ee9b5);
+    border: 1px solid oklch(76.5% 0.177 163.223);
+    color: #333;
+    padding: 3px 5px;
+    border-radius: 3px;
+    margin: 0 3px;
+
+    html.dark & {
+      background-image: linear-gradient(
+        to right,
+        oklch(43.2% 0.095 166.913),
+        oklch(43.2% 0.095 166.913)
+      );
+      border: 1px solid oklch(52.7% 0.154 150.069);
+      color: #f3f4f6;
+    }
+  }
+</style>
