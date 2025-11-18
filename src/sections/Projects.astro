@@ -49,6 +49,7 @@ const t = useTranslations(lang);
   const minSpeed = 2000;
   const intervalTime = Math.max(maxSpeed, minSpeed / cantCards);
   let animateInterval: null | NodeJS.Timeout = null;
+  let isAnimating = false;
 
   function animateRandomShine() {
     if (cards.length <= 0) return;
@@ -70,20 +71,28 @@ const t = useTranslations(lang);
   }
 
   window.addEventListener("blur", function () {
-    if (animateInterval) clearTimeout(animateInterval);
+    if (animateInterval) stopAnimation();
   });
 
   window.addEventListener("focus", function () {
-    startAnimation();
+    if (!isAnimating) startAnimation();
   });
 
   function startAnimation() {
+    if (isAnimating) return;
+
     const hexagons = document.querySelectorAll(".hexagon");
     const cantCards = hexagons.length;
     const intervalTime = Math.max(maxSpeed, minSpeed / cantCards);
 
     animateRandomShine();
     animateInterval = setInterval(animateRandomShine, intervalTime);
+    isAnimating = true;
+  }
+
+  function stopAnimation() {
+    if (animateInterval) clearInterval(animateInterval);
+    isAnimating = false;
   }
 
   const callback: IntersectionObserverCallback = function (entries, observer) {
@@ -91,7 +100,7 @@ const t = useTranslations(lang);
       const { isIntersecting } = entrie;
 
       if (isIntersecting) startAnimation();
-      if (!isIntersecting && animateInterval) clearTimeout(animateInterval);
+      if (!isIntersecting && animateInterval) stopAnimation();
     });
   };
 
