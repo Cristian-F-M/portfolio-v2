@@ -2,6 +2,7 @@
 import "@/styles/global.css";
 import "@fontsource-variable/montserrat";
 import "@fontsource-variable/raleway";
+import Snowfall from "react-snowfall";
 
 interface Props {
   title: string;
@@ -34,6 +35,15 @@ const locale = Astro.currentLocale;
   >
     <slot />
 
+    <div id="snowfall-container" class="hidden">
+      <Snowfall
+        client:load
+        style={{ position: "fixed", inset: 0 }}
+        speed={[1, 4]}
+        color="#218a50"
+      />
+    </div>
+
     <style is:global>
       :root {
         color-scheme: dark light;
@@ -60,3 +70,11 @@ const locale = Astro.currentLocale;
     <cm-toast></cm-toast>
   </body>
 </html>
+
+<script>
+  const snowfallContainer = document.getElementById("snowfall-container");
+
+  if (snowfallContainer && new Date().getMonth() >= 10) {
+    snowfallContainer.classList.remove("hidden");
+  }
+</script>
