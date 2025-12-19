@@ -136,19 +136,11 @@ const t = useTranslations(lang);
 </script>
 
 <script>
-  const buttons = document.querySelectorAll(".card button");
+  const anchors = document.querySelectorAll(".card a");
 
-  buttons.forEach((b) => {
-    b.addEventListener("click", (e) => {
+  anchors.forEach((a) => {
+    a.addEventListener("click", (e) => {
       e.stopPropagation();
-      e.preventDefault();
-      const target = e.target as HTMLButtonElement;
-      const button = target.closest("button");
-
-      if (!button) return;
-
-      const { url, target: urlTarget } = button.dataset;
-      window.open(url, urlTarget ?? "_blank");
     });
   });
 </script>
