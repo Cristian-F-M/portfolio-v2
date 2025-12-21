@@ -29,7 +29,7 @@ const t = useTranslations(lang);
       data-url={getRelativeLocaleUrl(lang, "projects")}
       data-target="_self"
       class="inline-flex items-center justify-center gap-1 whitespace-nowrap [&_svg]:pointer-events-none [&_svg]:size-4 h-11 bg-gradient-to-r from-blue-700  to-emerald-800 text-white px-7 py-4 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 text-md cursor-pointer active:from-blue-600 active:to-emerald-700"
-      onclick="event.preventDefault();  window.open(this.dataset.url, this.dataset.target ?? '_blank');"
+      onclick="event.preventDefault(); sessionStorage.setItem('projectBackUrl', window.location.pathname); sessionStorage.setItem('scrollPos', window.scrollY); window.open(this.dataset.url, this.dataset.target ?? '_blank');"
     >
       <IA />
       {t((lang) => lang.projects.seeMoreProjects)}
