@@ -24,7 +24,10 @@ export function useTranslations(lang: keyof typeof ui) {
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export function getValueByPath(obj: Record<string, any>, path: Path) {
-	const value = path.split('.').reduce((acc, key) => acc?.[key], obj)
-	if (typeof value === 'string') return value
-	return ''
+  const value = path.split('.').reduce((acc, key) => acc?.[key], obj)
+  if (typeof value === 'string') return value
+  
+  const defaultValue = path.split('.').reduce((acc, key) => acc?.[key], ui[defaultLang] as Record<string, any>)
+  if (typeof defaultValue === 'string') return defaultValue
+  return ''
 }
