@@ -41,6 +41,15 @@ export const ui = {
 					summary:
 						"Encargado de realizar pruebas de calidad a la aplicación <strong>Meters NG</strong>, verificando que todas sus funciones operaran correctamente. Esto incluía asegurar que los usuarios pudieran tomar lecturas, completar validaciones y emitir facturas sin problemas, además de revisar las configuraciones realizadas desde el portal web para garantizar una experiencia fluida en campo.",
 				},
+        independentProjects: {
+          summary: "Realizar proyectos independientes para mejorar, aprender y adquirir experiencia en el desarrollo web y móvil, utilizar nuevas herramientas que me permitian aprender y mejorar mis habilidades."
+        },
+        reactNativeDeveloper: {
+          summary: "Creación de aplicaciones móviles usando React Native en la cuales se usa storage local, fetching de datos de una API, notificaciones locales y remotas, entre otros."
+        },
+        fontEndDeveloper: {
+          summary: "Desarrollo de aplicaciones web usando React, Next.js y Tailwind CSS, además de otras librearias que me permitian mejorar el resultado final de los proyectos, realizar fetching de datos de una API, manejo de sesiones, y roles de usuario para contralar la visibilidad de los datos."
+        }
 			},
 		},
 		education: {
@@ -231,6 +240,15 @@ export const ui = {
 					summary:
 						"Responsible for performing quality tests on the <strong>Meters NG</strong> application, ensuring all its functions operated correctly. This included making sure users could take readings, complete validations, and issue invoices smoothly, as well as reviewing configurations made from the web portal to ensure a seamless field experience.",
 				},
+        independentProjects: {
+          summary: "To carry out independent projects to improve, learn and gain experience in web and mobile development, using new tools that allow me to learn and improve my skills."
+        },
+        reactNativeDeveloper: {
+          summary: "Creating mobile applications using React Native that utilize local storage, fetching data from an API, local and remote notifications, among other features."
+        },
+        fontEndDeveloper: {
+          summary: "Web application development using React, Next.js and Tailwind CSS, as well as other libraries that allowed me to improve the final result of the projects, perform data fetching from an API, session management, and user roles to control data visibility."
+        }
 			},
 		},
 		education: {
