@@ -1,7 +1,8 @@
 ---
 import Section from "@/components/Section.astro";
-import type { languages } from "@/i18n/ui";
-import { useTranslations } from "@/i18n/utils";
+import { EXPERIENCES } from "@/constants/Experience";
+import { ui, type languages } from "@/i18n/ui";
+import { getValueByPath, useTranslations } from "@/i18n/utils";
 import Briefcase from "@/icons/Briefcase.svg";
 import Verificate from "@/icons/Verificate.svg";
 
@@ -9,64 +10,6 @@ const lang = Astro.params.lang as keyof typeof languages;
 const t = useTranslations(lang);
 
 
-interface Experience {
-  id: string;
-  company: string;
-  period: {
-    start: `${string}/${string}/${string}`;
-    end: `${string}/${string}/${string}` | null;
-  };
-  position: string;
-  summary: string
-  verificate: boolean;
-}
-
-const EXPERIENCES: Experience[] = [
-  {
-    id: "WM",
-    company: "Wireless & Mobile",
-    period: {
-      start: "14/04/2024",
-      end: "17/10/2024",
-    },
-    position: "Tester",
-    summary: t(lang => lang.experience.jobs.wm.summary),
-    verificate: true,
-  },
-  {
-    id: "software-developer–independent-projects",
-    company: "Independent Projects",
-    period: {
-      start: "20/10/2024",
-      end: null
-    },
-    position: "Software Developer",
-    summary: t(lang => lang.experience.jobs.independentProjects.summary),
-    verificate: false,
-  },
-  {
-    id: "react-native-developer",
-    company: "React Native Developer",
-    period: {
-      start: "20/10/2024",
-      end: null
-    },
-    position: "React Native Developer",
-    summary: t(lang => lang.experience.jobs.reactNativeDeveloper.summary),
-    verificate: false,
-  },
-  {
-    id: "frontend-developer-react-react-native",
-    company: "Frontend Developer (React / React Native)",
-    period: {
-      start: "20/10/2024",
-      end: null
-    },
-    position: "Frontend Developer",
-    summary: t(lang => lang.experience.jobs.fontEndDeveloper.summary),
-    verificate: false,
-  }
-];
 ---
 
 <Section id="Experience" title={t(lang => lang.experience.sectionTitle)} class="md:w-11/12 w-full">
@@ -86,7 +29,7 @@ const EXPERIENCES: Experience[] = [
             <div>
               <div class="flex flex-row items-center justify-between">
                 <h4 class="md:text-lg text-base font-semibold text-gray-800 dark:text-gray-300 flex flex-row gap-2 items-center">
-                  {company}
+                  {getValueByPath(ui[lang], company)}
                   {verificate && (
                     <span class=" cursor-poiner" title="Certificado">
                       <Verificate class="md:size-4.5 size-4 text-blue-800 dark:text-blue-400 cursor-pointer" />
@@ -98,10 +41,12 @@ const EXPERIENCES: Experience[] = [
                   {period.start} - {period.end ? period.end : t(lang => lang.experience.currentJobText)}
                 </span>
               </div>
-              <h5 class="md:text-base text-sm text-gray-800 dark:text-gray-200 -mt-1">{position}</h5>
+              <h5 class="md:text-base text-sm text-gray-800 dark:text-gray-200 -mt-1">
+                {getValueByPath(ui[lang], position)}
+              </h5>
             </div>
 
-            <p class="md:text-base text-sm mt-2 text-gray-700 dark:text-gray-300" set:html={summary}></p>
+            <p class="md:text-base text-sm mt-2 text-gray-700 dark:text-gray-300" set:html={getValueByPath(ui[lang], summary)}></p>
           </div>
         </article>
       ),
